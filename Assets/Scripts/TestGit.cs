@@ -7,7 +7,7 @@ public class TestGit : MonoBehaviour
     {
         print("Hello world Louis");
         print("Stp marche vraiment");
-        print("la normalement ça marche jure wallah ???")
+        print("la normalement ça marche jure wallah ???");
     }
 
     public void Update()
