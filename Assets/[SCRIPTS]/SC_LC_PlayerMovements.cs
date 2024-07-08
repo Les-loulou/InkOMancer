@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 public class SC_LC_PlayerMovements : MonoBehaviour
 {
-	SC_LC_Player player;
+    public static SC_LC_PlayerMovements instance;
+    SC_LC_Player player;
 
     Camera cam;
     NavMeshAgent agent;
@@ -27,6 +28,13 @@ public class SC_LC_PlayerMovements : MonoBehaviour
 
     private void Awake()
     {
+        #region SINGLETON LEANDRE PARDON LOUIS D AVOIR TOUCHER A TON CODE
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        #endregion
+
         player = GetComponent<SC_LC_Player>();
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
