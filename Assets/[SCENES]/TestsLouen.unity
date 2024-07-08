@@ -984,7 +984,27 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
+      propertyPath: m_Offset.z
+      value: 0.12548992
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
+      propertyPath: m_FadeScale
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
       propertyPath: m_ScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957601564024817735, guid: 106883e6bd62c6d4f8056b601c179222, type: 3}
+      propertyPath: m_FadeFactor
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
