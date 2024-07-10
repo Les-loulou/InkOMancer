@@ -10,7 +10,11 @@ public class SC_LC_PlayerMovements : MonoBehaviour
     NavMeshAgent agent;
 
     [Header("MOVEMENT")]
-    public float currentSpeed;
+    [SerializeField] GameObject moveTarget;
+	[SerializeField] LayerMask groundLayer;
+
+	[Space]
+	public float currentSpeed;
     [SerializeField] float moveSpeed;
     [SerializeField] float sprintMultiplier;
 
@@ -43,8 +47,9 @@ public class SC_LC_PlayerMovements : MonoBehaviour
     void Update()
     {
         PlayerMovements();
+        PlayerMouseMovements();
 
-        PlayerSpeed();
+		PlayerSpeed();
     }
 
     void PlayerMovements()
@@ -96,6 +101,20 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         {
             currentSpeed = attackMoveSpeed;
             currentRotationSpeed = attackRotationSpeed;
+        }
+    }
+
+    void PlayerMouseMovements()
+    {
+        if (player.controls.movementClicked == true)
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundLayer))
+            {
+                moveTarget.transform.position = hitInfo.point;
+                agent.SetDestination(moveTarget.transform.position);
+			}
         }
     }
 }

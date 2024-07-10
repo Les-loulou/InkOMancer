@@ -90,6 +90,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MovementsMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""d09e7b3a-a401-4fbf-85de-d0f8cecdba59"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -290,6 +299,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""011fca87-c941-452e-80a5-a9c680e19db5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementsMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -375,6 +395,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_CharacterControls_CameraRotateLeft = m_CharacterControls.FindAction("CameraRotateLeft", throwIfNotFound: true);
         m_CharacterControls_Interact = m_CharacterControls.FindAction("Interact", throwIfNotFound: true);
         m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
+        m_CharacterControls_MovementsMouse = m_CharacterControls.FindAction("MovementsMouse", throwIfNotFound: true);
         // Interface
         m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
         m_Interface_Pause = m_Interface.FindAction("Pause", throwIfNotFound: true);
@@ -453,6 +474,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_CameraRotateLeft;
     private readonly InputAction m_CharacterControls_Interact;
     private readonly InputAction m_CharacterControls_Attack;
+    private readonly InputAction m_CharacterControls_MovementsMouse;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -464,6 +486,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @CameraRotateLeft => m_Wrapper.m_CharacterControls_CameraRotateLeft;
         public InputAction @Interact => m_Wrapper.m_CharacterControls_Interact;
         public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
+        public InputAction @MovementsMouse => m_Wrapper.m_CharacterControls_MovementsMouse;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +517,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @MovementsMouse.started += instance.OnMovementsMouse;
+            @MovementsMouse.performed += instance.OnMovementsMouse;
+            @MovementsMouse.canceled += instance.OnMovementsMouse;
         }
 
         private void UnregisterCallbacks(ICharacterControlsActions instance)
@@ -519,6 +545,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @MovementsMouse.started -= instance.OnMovementsMouse;
+            @MovementsMouse.performed -= instance.OnMovementsMouse;
+            @MovementsMouse.canceled -= instance.OnMovementsMouse;
         }
 
         public void RemoveCallbacks(ICharacterControlsActions instance)
@@ -599,6 +628,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCameraRotateLeft(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnMovementsMouse(InputAction.CallbackContext context);
     }
     public interface IInterfaceActions
     {

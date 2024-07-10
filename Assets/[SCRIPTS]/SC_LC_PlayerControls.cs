@@ -17,6 +17,7 @@ public class SC_LC_PlayerControls : MonoBehaviour
     [Header("MOVEMENTS")]
     public bool movementPressed;
     public bool sprintPressed;
+    public bool movementClicked;
 
     [Space]
     [Header("CAMERA")]
@@ -94,8 +95,11 @@ public class SC_LC_PlayerControls : MonoBehaviour
         //PAUSE
         pausePressed = input.Interface.Pause.triggered;
 
-        //if (pauseState.isGamePaused == false)
-        //{
+		//if (pauseState.isGamePaused == false)
+		//{
+		    //MOUSE MOVEMENTS
+		    movementClicked = input.CharacterControls.MovementsMouse.triggered;
+
             //INTERACT
             interactPressed = input.CharacterControls.Interact.triggered;
 
