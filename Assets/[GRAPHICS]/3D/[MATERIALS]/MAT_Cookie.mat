@@ -56,11 +56,11 @@ Material:
     m_Floats:
     - _AngleSpeed: 0.1
     - _Distort: 0.1
-    - _Intensity: 2
-    - _MaskImpact: 0.51
-    - _MaskScale: 30.96
+    - _Intensity: 0.75
+    - _MaskImpact: 0.11
+    - _MaskScale: 50
     - _NoisScale: 4.35
-    - _NoiseScale: 31
+    - _NoiseScale: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ShadowPower: 0.18
