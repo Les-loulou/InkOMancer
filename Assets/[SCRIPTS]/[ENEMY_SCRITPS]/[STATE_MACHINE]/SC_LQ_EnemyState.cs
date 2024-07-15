@@ -7,11 +7,15 @@ public abstract class SC_LQ_EnemyState : MonoBehaviour
     //Set Manager & Agent
     [HideInInspector] public SC_LQ_EnemyStateManager manager;
     [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public Animator animator;
+    
 
-    public virtual void Start()
+
+    public virtual void Awake()
     {
         manager = GetComponent<SC_LQ_EnemyStateManager>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     public abstract void OnEnterState();

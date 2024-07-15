@@ -4,37 +4,64 @@ using UnityEngine;
 public class SC_LQ_State_Inky_Attack : SC_LQ_EnemyState
 {
 
-    [SerializeField] float WaitBeforeAttack;
-    [SerializeField] GameObject inkyAttack;
+    [HideInInspector] public GameObject currentdecals;
+    [SerializeField] public GameObject inkExplosion;
+    [SerializeField] float increaser;
 
-    [SerializeField] GameObject decalsExplosion;
+    [SerializeField] public float timeWaitAfterExplode;
 
     public override void OnEnterState()
     {
-        //Stop the movement
+        OnJump += FeedbackJump;
+
         agent.enabled = false;
-        StartCoroutine(WaitAndInvoke());
+        currentdecals = GetComponent<SC_LQ_State_Inky_Charge>().currentDecals;
+
+        Jump();
+
+        increaser = Vector3.Distance(transform.position, currentdecals.transform.position) * Time.deltaTime * 3;
     }
 
     public override void OnExitState()
     {
-
+        OnJump -= FeedbackJump;
     }
 
     public override void UpdateState()
     {
-
+        if (currentdecals != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(currentdecals.transform.position.x, transform.position.y, currentdecals.transform.position.z), increaser);
+        }
     }
 
-    public IEnumerator WaitAndInvoke()
+    public System.Action OnJump;
+    public void Jump()
     {
-        //Instantiate decals
-        GameObject decals = Instantiate(decalsExplosion, (transform.position + Vector3.down *1)+ (transform.rotation * Vector3.forward * 1.5f), Quaternion.Euler(90,0,0));
+        OnJump?.Invoke();
+    }
 
-        yield return new WaitForSeconds(WaitBeforeAttack);
+    public void FeedbackJump()
+    {
+        animator.SetTrigger("Attack");
 
-        Instantiate(inkyAttack, transform.position, transform.rotation);
-        Destroy(gameObject);
+        //Instantiate dirt ground VFX to inky's jump ?
+    }
+
+    public void Explode()
+    {
+        Instantiate(inkExplosion, transform.position, transform.rotation);
+        Destroy(currentdecals);
+
+        StartCoroutine(WaitAfterExplosion());
+    }
+
+    public IEnumerator WaitAfterExplosion()
+    {
+
+        yield return new WaitForSeconds(timeWaitAfterExplode);
+
+        manager.SwitchState(GetComponent<SC_LQ_State_Inky_Move>());
     }
 
 }
