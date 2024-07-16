@@ -53,7 +53,7 @@ Material:
     - _EdgePower: 0.28
     - _EyesSize: 0.1
     - _FresnelPower: 2.81
-    - _MeltForce: 6.29
+    - _MeltForce: 6.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RandomWink: 0.1
@@ -65,7 +65,7 @@ Material:
     - _BubleClamp: {r: 0.9, g: 1, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
     - _EyeColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 0}
-    - _EyesSize: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _EyesSize: {r: 0.11, g: 0.11, b: 0, a: 0}
     - _MainColor: {r: 0, g: 0, b: 0, a: 0}
     - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
     - _offset02: {r: -0.17, g: -0.15, b: 0, a: 0}
