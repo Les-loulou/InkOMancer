@@ -53,6 +53,7 @@ Material:
     - _EdgePower: 0.28
     - _EyesSize: 0.1
     - _FresnelPower: 2.81
+    - _MaskRotate: 0
     - _MeltForce: 6.5
     - _QueueControl: 0
     - _QueueOffset: 0
