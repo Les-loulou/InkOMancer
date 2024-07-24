@@ -74,7 +74,7 @@ Material:
     - _MaskRotate: 0
     - _MaskTIling: 1
     - _MeltForce: 6.3
-    - _MouthWidth: 0.985
+    - _MouthWidth: 0.863
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RandomWink: 0.5
