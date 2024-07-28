@@ -39,7 +39,7 @@ public class SC_LQ_State_Inky_Move : SC_LQ_EnemyState
         //if very close to player's position, change body rotation to look at player and switch to "Charge State"
         if (Vector3.Distance(SC_LC_PlayerMovements.instance.transform.position, transform.position) < 2f)
         {
-            transform.LookAt(SC_LC_PlayerMovements.instance.transform.position);
+            transform.LookAt(new Vector3(SC_LC_PlayerMovements.instance.transform.position.x, transform.position.y, SC_LC_PlayerMovements.instance.transform.position.z));
 
             //Change State
             manager.SwitchState(GetComponent<SC_LQ_State_Inky_Charge>());
