@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - FxTemporaire
+  - Grid
+  - Rule Tile
+  - Tile Mesh
+  - Combined Mesh
   layers:
   - Default
   - TransparentFX

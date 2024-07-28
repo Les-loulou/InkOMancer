@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyname: Inky
   life: 3
   speed: 3
-  acceleration: 150
+  acceleration: 2
+  randomSize: {x: 0.75, y: 1.25}
