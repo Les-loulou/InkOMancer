@@ -9,6 +9,7 @@ TagManager:
   - Rule Tile
   - Tile Mesh
   - Combined Mesh
+  - Interactable
   layers:
   - Default
   - TransparentFX
