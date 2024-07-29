@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2495403735061787804}
   - component: {fileID: 2432500201930080743}
   - component: {fileID: 7574799814746155768}
+  - component: {fileID: 2533413472931029130}
   m_Layer: 0
   m_Name: VFX_InkyExplosion
   m_TagString: Untagged
@@ -131,3 +132,16 @@ MonoBehaviour:
   layermaskDamaged:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &2533413472931029130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341226663360944755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555894c8738165c4493c1dffbfc53711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timebeforeDestroy: 1.5
