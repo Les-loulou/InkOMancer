@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class SC_LC_CameraFollow : MonoBehaviour
 {
-    [SerializeField] public Transform target;
+    [HideInInspector] public Transform target;
 
     [SerializeField] float smoothSpeed;
 
     private void Start()
     {
+        target = SC_LC_PlayerMovements.instance.transform;
         transform.position = target.position;
     }
 
