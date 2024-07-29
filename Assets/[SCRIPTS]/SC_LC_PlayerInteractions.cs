@@ -5,11 +5,7 @@ public class SC_LC_PlayerInteractions : MonoBehaviour
 {
 	SC_LC_PlayerControls controls;
 
-	[SerializeField] Transform playerTransform;
-
 	public List<GameObject> interactList = new List<GameObject>();
-
-	public float newOutlineWidth;
 
 	#region SINGLETON
 	public static SC_LC_PlayerInteractions instance;
@@ -43,15 +39,13 @@ public class SC_LC_PlayerInteractions : MonoBehaviour
 	{
 		SortInteractions();
 
-		if (controls.interactPressed)
-		{
-			if (interactList.Count > 0 && interactList[0] != null)
-			{
-				SC_LC_Interactable interactable = interactList[0].gameObject.GetComponent<SC_LC_Interactable>();
+		if (interactList.Count == 0)
+			return;
 
-				if (interactable != null)
-					interactable.Interact();
-			}
+		if (controls.interactPressed == true)
+		{
+			SC_LC_Interactable interactable = interactList[0].gameObject.GetComponent<SC_LC_Interactable>();
+			interactable.Interact();
 		}
 	}
 
