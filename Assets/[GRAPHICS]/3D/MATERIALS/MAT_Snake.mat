@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6e14a7446e586c24fbcbd560f40c6d9f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_361102c2c06545338201ddad48061882_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6e14a7446e586c24fbcbd560f40c6d9f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2DLOD_81dd1e8260b747b79f7dcd213c0b173e_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 6e14a7446e586c24fbcbd560f40c6d9f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -74,13 +78,14 @@ Material:
     - _MaskRotate: 0
     - _MaskTIling: 0
     - _MeltForce: 6.3
+    - _MeltTiling: 5.72
     - _MouthColorMult: 0.75
     - _MouthWidth: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RandomWink: 1
-    - _WinkRate: 1
-    - _WinkSpeed: 100
+    - _WinkRate: 3
+    - _WinkSpeed: 50
     - _bls: 1
     - _gorotate: 0
     - _offset2: 0
@@ -88,16 +93,16 @@ Material:
     - _BubleClamp: {r: 0.9, g: 1, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
     - _EyeColor: {r: 2.1185474, g: 2.1185474, b: 2.1185474, a: 0}
-    - _EyesSize: {r: 0.16, g: 0.14, b: 0, a: 0}
+    - _EyesSize: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _GoMaskTiling: {r: 1, g: 1, b: 0, a: 0}
     - _InsideColor: {r: 2, g: 2, b: 2, a: 0}
     - _MainColor: {r: 0, g: 0, b: 0, a: 0}
     - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _MeltForce: {r: 0, g: 0, b: 0, a: 0}
+    - _MeltForce: {r: 2, g: 2, b: 0, a: 0}
     - _MouthOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling_Offset: {r: 1, g: 0.77, b: 0, a: -0.41}
-    - _offset02: {r: 0.25, g: -0.2, b: 0, a: 0}
-    - _offset1: {r: 0.25, g: -0.2, b: 0, a: 0}
+    - _offset02: {r: 0, g: -0.38, b: 0, a: 0}
+    - _offset1: {r: 0, g: -0.38, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1538560237104483405
