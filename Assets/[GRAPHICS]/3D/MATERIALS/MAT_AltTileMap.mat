@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6472277894008559343
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MAT_AltTileMap
+  m_Shader: {fileID: -6465566751694194690, guid: 503a44cbec440854ba27808564a5a928, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_13bd0c426b0b4b29a62747e9ca879429_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 1419bb61102b1034ebcb17ccc3704d45, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7c28d589d57d469b9e5894b82a40cc88_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 1419bb61102b1034ebcb17ccc3704d45, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9b7b8b8460974e2598c249c60644849e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 229eeb5bbfa484c4988ceda6d82b13e7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f7edaf1991fb4793bddcc353efed8f49_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 386f0fe6203307840b213f2e57cedb12, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - _DirtColorModifier: {r: 0.81724024, g: 0, b: 1, a: 0}
+    - _DirtOffset: {r: 1.69, g: 0, b: 0, a: 0}
+    - _GrassColorModifier: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+    - _GrassOffset: {r: 2.59, g: 0, b: 0, a: 0}
+    - _GridColor: {r: 1, g: 1, b: 1, a: 0}
+    - _GridOffset: {r: 2.7, g: 29.09, b: 0, a: 0}
+    - _GridTiling: {r: 5, g: 5, b: 0, a: 0}
+    - _MaskOffset: {r: 0.07, g: 0, b: 0, a: 0}
+    - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Offset: {r: 0.29, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _tiling: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
