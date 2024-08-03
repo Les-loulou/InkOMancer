@@ -16,7 +16,7 @@ public class SC_LQ_DealDamageZone : MonoBehaviour
         foreach (Collider hit in hited)
         {
             //To remplace by a component less specific than player, more like "Ally life"
-            if(hit.GetComponent<SC_LC_Player>())
+            if(hit.GetComponent<SC_LC_PlayerGlobal>())
             {
                 print("A toucher le joueur");
             }

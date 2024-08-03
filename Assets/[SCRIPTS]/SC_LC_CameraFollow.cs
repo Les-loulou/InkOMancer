@@ -13,7 +13,6 @@ public class SC_LC_CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, target.position, smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPosition;
-    }
+        transform.position = Vector3.Lerp(transform.position, target.position, smoothSpeed * Time.deltaTime); //Smoothly follows the player's movements
+	}
 }

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: SO_Inky
   m_EditorClassIdentifier: 
   enemyname: Inky
-  life: 3
+  health: 300
   speed: 3
   acceleration: 2
   randomSize: {x: 0.75, y: 1.25}
+  drops:
+  - dropPrefab: {fileID: 763978935762653005, guid: f87b2424b33e7614fb1b899fc7a01ce1, type: 3}
+    dropChance: 50

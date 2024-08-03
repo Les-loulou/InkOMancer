@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SC_LQ_State_Inky_Charge : SC_LQ_EnemyState
 {
+    SC_LC_PlayerGlobal player;
 
     [SerializeField] float WaitBeforeAttack;
     [SerializeField] GameObject decalsExplosion;
@@ -12,7 +13,9 @@ public class SC_LQ_State_Inky_Charge : SC_LQ_EnemyState
 
     public override void OnEnterState()
     {
-        OnCharge += StartCharge;
+		player = SC_LC_PlayerGlobal.instance;
+
+		OnCharge += StartCharge;
 
         //Stop the movement
         agent.enabled = false;
@@ -32,7 +35,7 @@ public class SC_LQ_State_Inky_Charge : SC_LQ_EnemyState
 
     public void StartCharge()
     {
-        posExplode = SC_LC_PlayerMovements.instance.transform.position + Vector3.down * 0.5f;
+        posExplode = player.transform.position + Vector3.down * 0.5f;
         currentDecals = Instantiate(decalsExplosion, posExplode, Quaternion.Euler(90, 0, 0));
 
         animator.SetTrigger("Charge");

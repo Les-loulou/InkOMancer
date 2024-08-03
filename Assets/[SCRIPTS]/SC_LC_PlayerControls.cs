@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SC_LC_PlayerControls : MonoBehaviour
 {
@@ -10,10 +9,10 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
     [HideInInspector] public Vector2 direction;
 
-    public bool isDamaging = false;
-    public bool isAttacking = false;
+    //public bool isDamaging = false;
+    //public bool isAttacking = false;
 
-    [Header("   -= INPUT CHECKERS =-")]
+    [Header("   ---= INPUT CHECKERS =---")]
     [Header("MOVEMENTS")]
     public bool movementPressed;
     public bool sprintPressed;

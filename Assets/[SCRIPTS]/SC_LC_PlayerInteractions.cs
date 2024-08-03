@@ -7,45 +7,22 @@ public class SC_LC_PlayerInteractions : MonoBehaviour
 
 	public List<GameObject> interactList = new List<GameObject>();
 
-	#region SINGLETON
-	public static SC_LC_PlayerInteractions instance;
-	private void Awake()
-	{
-		if (instance == null)
-			instance = this;
-		else
-			Destroy(this);
-	}
-	#endregion
-
-	private void Start()
-	{
+	void Start()
+    {
 		controls = SC_LC_PlayerControls.instance;
 	}
 
-	public void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("Interactable"))
-			interactList.Add(other.gameObject);
-	}
+    void Update()
+    {
+		SortInteractions(); //Sorts every interaction from the nearest to the furthest
 
-	public void OnTriggerExit(Collider other)
-	{
-		if (other.CompareTag("Interactable"))
-			interactList.Remove(other.gameObject);
-	}
-
-	void Update()
-	{
-		SortInteractions();
-
-		if (interactList.Count == 0)
+		if (interactList.Count == 0) //Ignore if the list is empty
 			return;
 
-		if (controls.interactPressed == true)
+		if (controls.interactPressed == true) //When interact control is pressed
 		{
-			SC_LC_Interactable interactable = interactList[0].gameObject.GetComponent<SC_LC_Interactable>();
-			interactable.Interact();
+			SC_LC_Interactable interactable = interactList[0].gameObject.GetComponent<SC_LC_Interactable>(); //Stores the first index of the interactions list in the "interactable" variable
+			interactable.Interact(); //Interacts with it
 		}
 	}
 
