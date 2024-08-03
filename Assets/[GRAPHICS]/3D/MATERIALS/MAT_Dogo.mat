@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Strinky
-  m_Shader: {fileID: -6465566751694194690, guid: 5ba530b5d3eb9114bb05816c592159c9, type: 3}
+  m_Name: MAT_Dogo
+  m_Shader: {fileID: -6465566751694194690, guid: 36c31074e1f150e409c0218bda4f50ab, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -69,34 +69,34 @@ Material:
     - _BubleSpeed: 0.5
     - _EdgePower: 0.28
     - _EyesSize: 0.1
-    - _FresnelPower: 5
+    - _FresnelPower: 2.81
     - _GoPower: 0.0489
     - _MaskRotate: 0
-    - _MaskTIling: 1
+    - _MaskTIling: 0
     - _MeltForce: 6.3
     - _MouthWidth: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RandomWink: 0.5
-    - _WinkRate: 0.5
-    - _WinkSpeed: 100
+    - _RandomWink: 0
+    - _WinkRate: 1
+    - _WinkSpeed: 0
     - _bls: 1
     - _gorotate: 0
     - _offset2: 0
     m_Colors:
     - _BubleClamp: {r: 0.9, g: 1, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
-    - _EyeColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 0}
-    - _EyesSize: {r: 0.07, g: 0.1, b: 0, a: 0}
+    - _EyeColor: {r: 2.1185474, g: 2.1185474, b: 2.1185474, a: 0}
+    - _EyesSize: {r: 0, g: 0, b: 0, a: 0}
     - _GoMaskTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _InsideColor: {r: 2, g: 2, b: 2, a: 0}
     - _MainColor: {r: 0, g: 0, b: 0, a: 0}
     - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _MeltForce: {r: 4, g: 6, b: 0, a: 0}
-    - _MouthOffset: {r: 0, g: -0.08, b: 0, a: 0}
-    - _Stickoffset: {r: -0.32, g: 0.36, b: 0, a: 0}
+    - _MeltForce: {r: 0, g: 0, b: 0, a: 0}
+    - _MouthOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling_Offset: {r: 1, g: 0.77, b: 0, a: -0.41}
-    - _offset02: {r: -0.32, g: -0.15, b: 0, a: 0}
-    - _offset1: {r: -0.19, g: -0.15, b: 0, a: 0}
+    - _offset02: {r: 0, g: 0, b: 0, a: 0}
+    - _offset1: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1538560237104483405

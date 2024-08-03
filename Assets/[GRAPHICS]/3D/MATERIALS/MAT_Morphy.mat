@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Multinky
-  m_Shader: {fileID: -6465566751694194690, guid: 8648321274bfd9e4fb07c9698c12b066, type: 3}
+  m_Name: MAT_Morphy
+  m_Shader: {fileID: -6465566751694194690, guid: 73f7d96265b5419409c42f50114ddbe9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -62,42 +62,38 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Arri_re_Avant: 0
+    - _Arri_re_Avant: 0.25
     - _BubbleStep: 1
     - _BubleForce: 5
     - _BubleRate: 1
     - _BubleSpeed: 0.5
     - _EdgePower: 0.28
     - _EyesSize: 0.1
-    - _FresnelPower: 5
+    - _FresnelPower: 2.81
     - _GoPower: 0.0489
     - _MaskRotate: 0
-    - _MaskTIling: 1.13
+    - _MaskTIling: 1
     - _MeltForce: 6.3
-    - _MouthWidth: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RandomWink: 0.5
-    - _WinkRate: 2
-    - _WinkSpeed: 50
+    - _RandomWink: 0.1
+    - _WinkRate: 0.25
+    - _WinkSpeed: 350
     - _bls: 1
     - _gorotate: 0
     - _offset2: 0
     m_Colors:
     - _BubleClamp: {r: 0.9, g: 1, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
-    - _EyeColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 0}
-    - _EyesSize: {r: 0.05, g: 0.1, b: 0, a: 0}
+    - _EyeColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 0}
+    - _EyesSize: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _GoMaskTiling: {r: 1, g: 1, b: 0, a: 0}
     - _MainColor: {r: 0, g: 0, b: 0, a: 0}
     - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _MeltForce: {r: 5, g: 6, b: 0, a: 0}
-    - _MouthOffset: {r: 0, g: -0.08, b: 0, a: 0}
-    - _ReverseEyeColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Stickoffset: {r: -0.32, g: 0.36, b: 0, a: 0}
+    - _MeltForce: {r: 0.25, g: 0.25, b: 0, a: 0}
     - _Tiling_Offset: {r: 1, g: 0.77, b: 0, a: -0.41}
-    - _offset02: {r: 0.18, g: -0.25, b: 0, a: 0}
-    - _offset1: {r: 0.33, g: -0.25, b: 0, a: 0}
+    - _offset02: {r: 0.1, g: -0.325, b: 0, a: 0}
+    - _offset1: {r: -0.1, g: -0.325, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1538560237104483405
