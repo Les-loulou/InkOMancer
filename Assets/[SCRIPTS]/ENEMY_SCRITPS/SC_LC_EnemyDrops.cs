@@ -74,11 +74,13 @@ public class SC_LC_EnemyDrops : MonoBehaviour
 				newDrop.transform.position = NewPosition(newDrop); //Sets the current drop position to a new valid position
 
 			dropCount--; //Substract 1 to the drops count
-			if (dropCount == 0) //If the drops count reaches 0
-				Destroy(gameObject); //Destroys the enemy
+
 
 			yield return new WaitForSeconds(itemDropRate); //Waits before the next instantiation
 		}
+
+		if (dropCount == 0) //If the drops count reaches 0
+			Destroy(gameObject); //Destroys the enemy
 	}
 
 	Vector3 NewPosition(GameObject _currentDrop)

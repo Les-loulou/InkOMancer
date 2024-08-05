@@ -4,7 +4,7 @@ public class SC_LC_PlayerGlobal : MonoBehaviour
 {
 	public static SC_LC_PlayerGlobal instance;
 
-	[HideInInspector] public SC_LC_PlayerControls controls;
+	[HideInInspector] public SC_LC_PlayerControls inputs;
 	[HideInInspector] public SC_LC_PlayerMovements movements;
 	[HideInInspector] public SC_LC_PlayerInteractions interactions;
 
@@ -20,7 +20,7 @@ public class SC_LC_PlayerGlobal : MonoBehaviour
 
 	void Start()
     {
-		controls = SC_LC_PlayerControls.instance;
+		inputs = SC_LC_PlayerControls.instance;
 		movements = GetComponent<SC_LC_PlayerMovements>();
 		interactions = GetComponent<SC_LC_PlayerInteractions>();
 	}

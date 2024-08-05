@@ -1,8 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SC_LC_RoomsGeneration : MonoBehaviour
 {
+	SC_LC_PlayerGlobal player;
+
 	[Header(" ---=[ GRID GENERATION ]=---")]
 	[Header("OBJECTS")]
 	[SerializeField] GameObject start;
@@ -25,7 +29,9 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 
 	[Space(2)]
 	[Header("VALUES")]
-	[SerializeField] int islandCount;
+	[SerializeField] int islandsCount;
+	[SerializeField] int minIslands;
+	[SerializeField] int maxIslands;
 
 	[SerializeField] List<Island> islands = new();
 	Vector3[] directions = new Vector3[4]
@@ -41,18 +47,25 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 		GenerateGrid();
 	}
 
+	private void Start()
+	{
+		player = SC_LC_PlayerGlobal.instance;
+		
+		StartCoroutine(GenerateIslands());
+	}
+
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space)) //DEBUG
+		if (player.inputs.createIslandPressed == true) //DEBUG
 			CreateIsland();
 
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (player.inputs.upIslandPressed == true)
 			NewIslandDebug(new Vector3(0, 0, 1));
-		if (Input.GetKeyDown(KeyCode.RightArrow))
+		if (player.inputs.rightIslandPressed == true)
 			NewIslandDebug(new Vector3(1, 0, 0));
-		if (Input.GetKeyDown(KeyCode.DownArrow))
+		if (player.inputs.downIslandPressed == true)
 			NewIslandDebug(new Vector3(0, 0, -1));
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (player.inputs.leftIslandPressed == true)
 			NewIslandDebug(new Vector3(-1, 0, 0));
 	}
 
@@ -71,14 +84,27 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 
 				float xCenter = Mathf.Ceil(xLength / 2); //Finds the center of the X axis
 				float zCenter = Mathf.Ceil(zLength / 2); //Finds the center of the Z axis
-				if (newChunk.chunkCoords == new Vector3(xCenter, 0, zCenter)) //Checks if the current chunk's coordinates are the center of the grid
+				if (newChunk.coordinates == new Vector3(xCenter, 0, zCenter)) //Checks if the current chunk's coordinates are the center of the grid
 					centerChunk = newChunk; //Sets the center of the grid to the centerChunk variable
 
-				chunks.Add(newChunk.chunkCoords, newChunk); //Adds the new chunk to the chunks dictionary using it's coordinates as a key
-				newChunk.chunkInstance = Instantiate(newChunk.chunkPref, start.transform.position + newChunk.chunkCoords * chunkOffset, Quaternion.identity, gridParent); //Instantiates the new chunk
+				chunks.Add(newChunk.coordinates, newChunk); //Adds the new chunk to the chunks dictionary using it's coordinates as a key
+				newChunk.chunkInstance = Instantiate(newChunk.chunkPref, start.transform.position + newChunk.coordinates * chunkOffset, Quaternion.identity, gridParent); //Instantiates the new chunk
 			}
 
 		UpdatePossibleDirections(); //Update the possible directions of all the chunks
+	}
+
+	IEnumerator GenerateIslands()
+	{
+		for (int i = 0; i < maxIslands; i++) //Generate a set number of islands
+		{
+			CreateIsland(); //Creates each island
+
+			yield return new WaitForSeconds(0.05f); //Waits before the next step
+		}
+
+		if (islandsCount < minIslands) //If the number of island is below the minimum number of islands required
+			RerollIslands(); //Restarts the generation process
 	}
 
 	void CreateIsland()
@@ -86,19 +112,24 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 		GameObject newPrefab = prefabs[Random.Range(0, prefabs.Count)]; //Chooses a random island in the islands list
 		Island newIsland = new Island(newPrefab, Vector3.zero, Vector3.zero); //Creates a temporary new Island and stores it in the newIsland variable
 
-		if (islandCount == 0) //If the created island is the first one
-			SetupIsland(newIsland, centerChunk.chunkCoords); //Sets the coordinates and direction of the first island on the center chunk
+		if (islandsCount == 0) //If the created island is the first one
+			newIsland.coordinates = centerChunk.coordinates; //Sets the coordinates of the island to the center chunk
 		else
 		{
-			Island previousIsland = islands[islandCount - 1]; //Stores the previous island in a variable
+			Island previousIsland = islands[islandsCount - 1]; //Stores the previous island in a variable
 			Vector3 newCoords = previousIsland.coordinates + previousIsland.direction; //Stores the coordinates of the new islands in a variable
 
-			SetupIsland(newIsland, newCoords); //Sets the coordinates and direction of the island
+			newIsland.coordinates = newCoords; //Sets the coordinates of the island to the new coordinates
 		}
 
-		islandCount++; //Adds one to the count of islands
+		if (chunks[newIsland.coordinates].possibleDirections.Count == 0) //If the new Island is leading in a dead end
+			return; //Stops the generation to go any further
+
+		newIsland.direction = chunks[newIsland.coordinates].possibleDirections[Random.Range(0, chunks[newIsland.coordinates].possibleDirections.Count)]; //Randomly sets the island's direction to one of the chunk's possible directions
+
 		chunks[newIsland.coordinates].island = newIsland; //Stores the new island in the corresponding chunk
 		islands.Add(newIsland); //Stores the new island in the islands list
+		islandsCount = islands.Count;
 
 		newIsland.islandInstance = Instantiate( //Instantiates the new island
 			newIsland.prefab, //Sets the prefab of the new island
@@ -106,13 +137,16 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 			Quaternion.identity, //Sets the rotation of the new island
 			chunks[newIsland.coordinates].chunkInstance.transform); //Sets the parent of the new island
 
-		UpdatePossibleDirections(); //Update the possible directions of all to chunks
+		UpdatePossibleDirections(); //Update the possible directions of all chunks
 	}
 
-	void SetupIsland(Island _newIsland, Vector3 _coordinates)
+	void RerollIslands()
 	{
-		_newIsland.coordinates = _coordinates; //Sets the coordinates of the island
-		_newIsland.direction = chunks[_newIsland.coordinates].possibleDirections[Random.Range(0, chunks[_newIsland.coordinates].possibleDirections.Count)]; //Randomly sets the island's direction to one of the chunk's possible directions
+		StopCoroutine(GenerateIslands());
+
+		ClearAll();
+
+		StartCoroutine(GenerateIslands());
 	}
 
 	void UpdatePossibleDirections()
@@ -128,10 +162,10 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 		}
 	}
 
-	bool BoundsCheck(KeyValuePair<Vector3, Chunk> _chunk, int _i)
+	bool BoundsCheck(KeyValuePair<Vector3, Chunk> _chunk, int _currentDirection)
 	{
-		var xDirectionCheck = (_chunk.Key + directions[_i]).x; //Sets the direction check variable on the X axis
-		var zDirectionCheck = (_chunk.Key + directions[_i]).z; //Sets the direction check variable on the Z axis
+		var xDirectionCheck = (_chunk.Key + directions[_currentDirection]).x; //Sets the direction check variable on the X axis
+		var zDirectionCheck = (_chunk.Key + directions[_currentDirection]).z; //Sets the direction check variable on the Z axis
 		if (xDirectionCheck >= 0 && zDirectionCheck >= 0 && xDirectionCheck <= xLength && zDirectionCheck <= zLength) //Checks if the direction doesn't lead out of bounds
 			return true;
 		else
@@ -143,7 +177,7 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 	void ClearAll()
 	{
 		islands.Clear(); //Clears the islands list
-		islandCount = 0; //Sets the count of islands to 0
+		islandsCount = 0;
 
 		for (int i = 0; i < gridParent.transform.childCount; i++) //For each chunk
 			if (gridParent.transform.GetChild(i).childCount > 0) //If the chunk contains an island
@@ -152,28 +186,43 @@ public class SC_LC_RoomsGeneration : MonoBehaviour
 		foreach (KeyValuePair<Vector3, Chunk> chunk in chunks) //For each chunk in the chunks dictionary
 			chunk.Value.island = null; //Clears the island assigned to this chunk
 
+		UpdatePossibleDirections();
 	}
 
 	void NewIslandDebug(Vector3 _direction)
 	{
 		GameObject newPrefab = prefabs[Random.Range(0, prefabs.Count)]; //Chooses a random island in the islands list
-		Island newIsland = new Island(newPrefab, Vector3.zero, Vector3.zero);
+		Island newIsland = new Island(newPrefab, Vector3.zero, Vector3.zero); //Creates a temporary new Island and stores it in the newIsland variable
 
-		if (islandCount == 0)
-			SetupIsland(newIsland, centerChunk.chunkCoords);
+		islandsCount = 0; //Sets the count of islands to 0
+		if (islandsCount == 0) //If the created island is the first one
+			newIsland.coordinates = centerChunk.coordinates; //Sets the coordinates of the island to the center chunk
 		else
 		{
-			Island previousIsland = islands[islandCount - 1];
+			Island previousIsland = islands[islandsCount - 1]; //Stores the previous island in a variable
+			Vector3 newCoords = previousIsland.coordinates + _direction; //Stores the coordinates of the new islands in a variable
 
-			SetupIsland(newIsland, previousIsland.coordinates + _direction);
+			newIsland.coordinates = newCoords; //Sets the coordinates of the island to the new coordinates
 		}
 
-		islandCount++;
-		chunks[newIsland.coordinates].island = newIsland;
-		islands.Add(newIsland);
+		if (chunks[newIsland.coordinates].possibleDirections.Count == 0)
+		{
+			Debug.Log("Reached a dead end");
+			return;
+		}
 
-		newIsland.islandInstance = Instantiate(newIsland.prefab, chunks[newIsland.coordinates].chunkInstance.transform.position, Quaternion.identity, chunks[newIsland.coordinates].chunkInstance.transform);
-		UpdatePossibleDirections();
+		newIsland.direction = chunks[newIsland.coordinates].possibleDirections[Random.Range(0, chunks[newIsland.coordinates].possibleDirections.Count)]; //Randomly sets the island's direction to one of the chunk's possible directions
+
+		chunks[newIsland.coordinates].island = newIsland; //Stores the new island in the corresponding chunk
+		islands.Add(newIsland); //Stores the new island in the islands list
+
+		newIsland.islandInstance = Instantiate( //Instantiates the new island
+			newIsland.prefab, //Sets the prefab of the new island
+			chunks[newIsland.coordinates].chunkInstance.transform.position, //Sets the position of the new island
+			Quaternion.identity, //Sets the rotation of the new island
+			chunks[newIsland.coordinates].chunkInstance.transform); //Sets the parent of the new island
+
+		UpdatePossibleDirections(); //Update the possible directions of all chunks
 	}
 	#endregion
 
@@ -264,7 +313,7 @@ public class Chunk
 {
 	public GameObject chunkPref;
 	public GameObject chunkInstance;
-	public Vector3 chunkCoords;
+	public Vector3 coordinates;
 	public List<Vector3> possibleDirections = new List<Vector3>();
 
 	public Island island;
@@ -272,7 +321,7 @@ public class Chunk
 	public Chunk(GameObject _prefab, Vector3 _coordinates, List<Vector3> _pDirections)
 	{
 		this.chunkPref = _prefab;
-		this.chunkCoords = _coordinates;
+		this.coordinates = _coordinates;
 		this.possibleDirections = _pDirections;
 	}
 }

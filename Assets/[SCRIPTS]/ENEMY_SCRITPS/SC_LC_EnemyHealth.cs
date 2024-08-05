@@ -4,20 +4,22 @@ using UnityEngine.UI;
 public class SC_LC_EnemyHealth : MonoBehaviour
 {
 	SC_LQ_EnemyGlobal enemy;
+	SC_LC_PlayerGlobal player;
 
 	[Space]
 	public GameObject deathParticle;
 	public Slider healthBar;
 
 	[Space]
-	public float health;
+	float health;
 	[HideInInspector] public float maxHealth;
 	[HideInInspector] public float smoothHealth;
 	public float healthSpeed = 10f;
 
 	void Start()
 	{
-		enemy = SC_LQ_EnemyGlobal.instance;
+		enemy = GetComponent<SC_LQ_EnemyGlobal>();
+		player = SC_LC_PlayerGlobal.instance;
 
 		health = enemy.stats.health;
 		maxHealth = enemy.stats.health;
@@ -39,7 +41,7 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 			//Destroy(healthBar);
 		}
 
-		if (Input.GetKeyDown(KeyCode.I)) //DEBUG
+		if (player.inputs.damageEnemyPressed == true) //DEBUG
 			Damage(-50);
 	}
 

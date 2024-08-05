@@ -218,7 +218,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870904346435354466}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c85d140f3c72b96468ca80a7ed863ab9, type: 3}
   m_Name: 
@@ -292,7 +292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticle: {fileID: 0}
   healthBar: {fileID: 6428094807880983413}
-  health: 0
   maxHealth: 0
   smoothHealth: 0
   healthSpeed: 10
@@ -310,13 +309,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySO: {fileID: 11400000, guid: 470331d4b67cdeb42a0d2037a018ad09, type: 2}
   currentDrops: []
-  xRange: {x: 2, y: 0}
-  zRange: {x: 2, y: 0}
-  itemDropRate: 2
+  xRange: {x: -2.5, y: 2.5}
+  zRange: {x: -2.5, y: 2.5}
+  itemDropRate: 0.2
   blockingLayers:
     serializedVersion: 2
-    m_Bits: 0
-  voidMaxDistance: 0
+    m_Bits: 1536
+  voidMaxDistance: 4
 --- !u!1 &3356276170057302500
 GameObject:
   m_ObjectHideFlags: 0

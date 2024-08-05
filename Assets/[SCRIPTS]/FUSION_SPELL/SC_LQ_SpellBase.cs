@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SC_LQ_SpellBase : MonoBehaviour
 {
+    SC_LC_PlayerGlobal player;
+
     public GameObject shape;
 
     public List<SC_LQ_SpellEffect> effects;
@@ -10,8 +12,9 @@ public class SC_LQ_SpellBase : MonoBehaviour
 
     public void LaunchSpell()
     {
+		player = SC_LC_PlayerGlobal.instance;
 
-        GameObject currentSpell = Instantiate(shape, transform.position, transform.rotation);
+		GameObject currentSpell = Instantiate(shape, transform.position, transform.rotation);
 
         //Ajouter des Components en fonction de ma liste
         foreach (SC_LQ_SpellEffect effect in effects)
@@ -22,7 +25,7 @@ public class SC_LQ_SpellBase : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (player.inputs.castSpellPressed == true)
         {
             LaunchSpell();
         }

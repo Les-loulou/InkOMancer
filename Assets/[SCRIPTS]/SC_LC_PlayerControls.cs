@@ -13,7 +13,20 @@ public class SC_LC_PlayerControls : MonoBehaviour
     //public bool isAttacking = false;
 
     [Header("   ---= INPUT CHECKERS =---")]
-    [Header("MOVEMENTS")]
+	[Header("DEBUG")]
+	public bool debugPressed;
+
+	public bool createIslandPressed;
+	public bool upIslandPressed;
+	public bool rightIslandPressed;
+	public bool downIslandPressed;
+	public bool leftIslandPressed;
+
+	public bool damageEnemyPressed;
+
+	public bool castSpellPressed;
+
+	[Header("MOVEMENTS")]
     public bool movementPressed;
     public bool sprintPressed;
     public bool movementClicked;
@@ -38,6 +51,7 @@ public class SC_LC_PlayerControls : MonoBehaviour
     {
         input.CharacterControls.Enable();
         input.Interface.Enable();
+        input.DebugKeys.Enable();
 
         //input.CharacterControls.Movement.performed += OnMovementPerformed;
         //input.CharacterControls.Movement.canceled += OnMovementCancelled;
@@ -47,6 +61,7 @@ public class SC_LC_PlayerControls : MonoBehaviour
     {
         input.CharacterControls.Disable();
         input.Interface.Disable();
+        input.DebugKeys.Disable();
 
         //input.CharacterControls.Movement.performed -= OnMovementPerformed;
         //input.CharacterControls.Movement.canceled -= OnMovementCancelled;
@@ -82,8 +97,12 @@ public class SC_LC_PlayerControls : MonoBehaviour
         //CAMERA FOCUS
         input.CharacterControls.CameraFocus.performed += ctx => focusPressed = ctx.ReadValueAsButton();
         input.CharacterControls.CameraFocus.canceled += ctx => focusPressed = ctx.ReadValueAsButton();
-    }
 
+		//DEBUG
+		input.DebugKeys.Debug.performed += ctx => debugPressed = ctx.ReadValueAsButton();
+		input.DebugKeys.Debug.canceled += ctx => debugPressed = ctx.ReadValueAsButton();
+	}
+    
     void Start()
     {
         //pauseState = SC_GamePauseState.instance;
@@ -111,8 +130,22 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
             //INVENTORY
             inventoryPressed = input.Interface.Inventory.triggered;
-        //}
-    }
+		//}
+
+        if (debugPressed == true)
+        {
+            createIslandPressed = input.DebugKeys.GenerateIsland.triggered;
+
+            upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
+            rightIslandPressed = input.DebugKeys.GenerateIslandRight.triggered;
+            downIslandPressed = input.DebugKeys.GenerateIslandDown.triggered;
+            leftIslandPressed = input.DebugKeys.GenerateIslandLeft.triggered;
+
+            damageEnemyPressed = input.DebugKeys.DamageEnemy.triggered;
+
+			castSpellPressed = input.DebugKeys.CastSpell.triggered;
+		}
+	}
 
     //void OnMovementPerformed(InputAction.CallbackContext value)
     //{

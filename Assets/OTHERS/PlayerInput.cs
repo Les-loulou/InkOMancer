@@ -41,7 +41,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""1a56e10e-7322-4e62-b930-cdd5789cf68d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -59,7 +59,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""CameraRotateRight"",
                     ""type"": ""Button"",
                     ""id"": ""103e1b7a-cb19-4271-a39b-bd061f632d3d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -77,7 +77,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""762e2d40-8876-4b43-b9b9-1ee3e3ee51e6"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -86,7 +86,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""5b1e6949-9634-404f-ae7e-3c5e0b4af191"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -382,6 +382,174 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""DebugKeys"",
+            ""id"": ""0ad0f07a-2c98-4a47-9bcd-d0c5ecdfc0ce"",
+            ""actions"": [
+                {
+                    ""name"": ""Debug"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""053c73c8-e4c9-4811-a7dc-be3224a5283a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateIsland"",
+                    ""type"": ""Button"",
+                    ""id"": ""76cbd96f-ff6b-4b5e-abff-49427fb96af9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateIslandUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""18f4872a-26bf-4950-a427-0b1b42afc08f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateIslandRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""00305b15-a918-4f7f-9153-70e97afbb1ec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateIslandDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf884c95-7a02-478a-8543-082a5382da33"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateIslandLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""64b5f599-57a1-41be-89c5-a2fdb91a87b9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DamageEnemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""581a7e2b-f6f7-4f22-8900-5b6c3c65477b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CastSpell"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee1b8940-71b1-47c5-8646-d7b3324008f8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e5ea6887-5b29-497c-89a2-418473176ab4"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea4dedbc-f78a-4048-bc8b-d864ad77b20f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc0374b9-b5bd-45f5-a6e0-429227a3c17f"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIslandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea1bf0a2-dc8e-4263-b37b-e94b0ef00cfa"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIslandRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83f78b40-5f5e-4ea3-aed0-ddce86182f8c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIslandDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49b4b9ed-08e2-46da-ac57-91f7d14c1f99"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIslandLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a301860-a7e2-4f85-a021-b1c9cbce9d32"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DamageEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fffc0f8-d3b4-4b33-9b30-930c81be9322"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CastSpell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -400,12 +568,23 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
         m_Interface_Pause = m_Interface.FindAction("Pause", throwIfNotFound: true);
         m_Interface_Inventory = m_Interface.FindAction("Inventory", throwIfNotFound: true);
+        // DebugKeys
+        m_DebugKeys = asset.FindActionMap("DebugKeys", throwIfNotFound: true);
+        m_DebugKeys_Debug = m_DebugKeys.FindAction("Debug", throwIfNotFound: true);
+        m_DebugKeys_GenerateIsland = m_DebugKeys.FindAction("GenerateIsland", throwIfNotFound: true);
+        m_DebugKeys_GenerateIslandUp = m_DebugKeys.FindAction("GenerateIslandUp", throwIfNotFound: true);
+        m_DebugKeys_GenerateIslandRight = m_DebugKeys.FindAction("GenerateIslandRight", throwIfNotFound: true);
+        m_DebugKeys_GenerateIslandDown = m_DebugKeys.FindAction("GenerateIslandDown", throwIfNotFound: true);
+        m_DebugKeys_GenerateIslandLeft = m_DebugKeys.FindAction("GenerateIslandLeft", throwIfNotFound: true);
+        m_DebugKeys_DamageEnemy = m_DebugKeys.FindAction("DamageEnemy", throwIfNotFound: true);
+        m_DebugKeys_CastSpell = m_DebugKeys.FindAction("CastSpell", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
     {
         Debug.Assert(!m_CharacterControls.enabled, "This will cause a leak and performance issues, PlayerInput.CharacterControls.Disable() has not been called.");
         Debug.Assert(!m_Interface.enabled, "This will cause a leak and performance issues, PlayerInput.Interface.Disable() has not been called.");
+        Debug.Assert(!m_DebugKeys.enabled, "This will cause a leak and performance issues, PlayerInput.DebugKeys.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -619,6 +798,108 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public InterfaceActions @Interface => new InterfaceActions(this);
+
+    // DebugKeys
+    private readonly InputActionMap m_DebugKeys;
+    private List<IDebugKeysActions> m_DebugKeysActionsCallbackInterfaces = new List<IDebugKeysActions>();
+    private readonly InputAction m_DebugKeys_Debug;
+    private readonly InputAction m_DebugKeys_GenerateIsland;
+    private readonly InputAction m_DebugKeys_GenerateIslandUp;
+    private readonly InputAction m_DebugKeys_GenerateIslandRight;
+    private readonly InputAction m_DebugKeys_GenerateIslandDown;
+    private readonly InputAction m_DebugKeys_GenerateIslandLeft;
+    private readonly InputAction m_DebugKeys_DamageEnemy;
+    private readonly InputAction m_DebugKeys_CastSpell;
+    public struct DebugKeysActions
+    {
+        private @PlayerInput m_Wrapper;
+        public DebugKeysActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Debug => m_Wrapper.m_DebugKeys_Debug;
+        public InputAction @GenerateIsland => m_Wrapper.m_DebugKeys_GenerateIsland;
+        public InputAction @GenerateIslandUp => m_Wrapper.m_DebugKeys_GenerateIslandUp;
+        public InputAction @GenerateIslandRight => m_Wrapper.m_DebugKeys_GenerateIslandRight;
+        public InputAction @GenerateIslandDown => m_Wrapper.m_DebugKeys_GenerateIslandDown;
+        public InputAction @GenerateIslandLeft => m_Wrapper.m_DebugKeys_GenerateIslandLeft;
+        public InputAction @DamageEnemy => m_Wrapper.m_DebugKeys_DamageEnemy;
+        public InputAction @CastSpell => m_Wrapper.m_DebugKeys_CastSpell;
+        public InputActionMap Get() { return m_Wrapper.m_DebugKeys; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugKeysActions set) { return set.Get(); }
+        public void AddCallbacks(IDebugKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugKeysActionsCallbackInterfaces.Add(instance);
+            @Debug.started += instance.OnDebug;
+            @Debug.performed += instance.OnDebug;
+            @Debug.canceled += instance.OnDebug;
+            @GenerateIsland.started += instance.OnGenerateIsland;
+            @GenerateIsland.performed += instance.OnGenerateIsland;
+            @GenerateIsland.canceled += instance.OnGenerateIsland;
+            @GenerateIslandUp.started += instance.OnGenerateIslandUp;
+            @GenerateIslandUp.performed += instance.OnGenerateIslandUp;
+            @GenerateIslandUp.canceled += instance.OnGenerateIslandUp;
+            @GenerateIslandRight.started += instance.OnGenerateIslandRight;
+            @GenerateIslandRight.performed += instance.OnGenerateIslandRight;
+            @GenerateIslandRight.canceled += instance.OnGenerateIslandRight;
+            @GenerateIslandDown.started += instance.OnGenerateIslandDown;
+            @GenerateIslandDown.performed += instance.OnGenerateIslandDown;
+            @GenerateIslandDown.canceled += instance.OnGenerateIslandDown;
+            @GenerateIslandLeft.started += instance.OnGenerateIslandLeft;
+            @GenerateIslandLeft.performed += instance.OnGenerateIslandLeft;
+            @GenerateIslandLeft.canceled += instance.OnGenerateIslandLeft;
+            @DamageEnemy.started += instance.OnDamageEnemy;
+            @DamageEnemy.performed += instance.OnDamageEnemy;
+            @DamageEnemy.canceled += instance.OnDamageEnemy;
+            @CastSpell.started += instance.OnCastSpell;
+            @CastSpell.performed += instance.OnCastSpell;
+            @CastSpell.canceled += instance.OnCastSpell;
+        }
+
+        private void UnregisterCallbacks(IDebugKeysActions instance)
+        {
+            @Debug.started -= instance.OnDebug;
+            @Debug.performed -= instance.OnDebug;
+            @Debug.canceled -= instance.OnDebug;
+            @GenerateIsland.started -= instance.OnGenerateIsland;
+            @GenerateIsland.performed -= instance.OnGenerateIsland;
+            @GenerateIsland.canceled -= instance.OnGenerateIsland;
+            @GenerateIslandUp.started -= instance.OnGenerateIslandUp;
+            @GenerateIslandUp.performed -= instance.OnGenerateIslandUp;
+            @GenerateIslandUp.canceled -= instance.OnGenerateIslandUp;
+            @GenerateIslandRight.started -= instance.OnGenerateIslandRight;
+            @GenerateIslandRight.performed -= instance.OnGenerateIslandRight;
+            @GenerateIslandRight.canceled -= instance.OnGenerateIslandRight;
+            @GenerateIslandDown.started -= instance.OnGenerateIslandDown;
+            @GenerateIslandDown.performed -= instance.OnGenerateIslandDown;
+            @GenerateIslandDown.canceled -= instance.OnGenerateIslandDown;
+            @GenerateIslandLeft.started -= instance.OnGenerateIslandLeft;
+            @GenerateIslandLeft.performed -= instance.OnGenerateIslandLeft;
+            @GenerateIslandLeft.canceled -= instance.OnGenerateIslandLeft;
+            @DamageEnemy.started -= instance.OnDamageEnemy;
+            @DamageEnemy.performed -= instance.OnDamageEnemy;
+            @DamageEnemy.canceled -= instance.OnDamageEnemy;
+            @CastSpell.started -= instance.OnCastSpell;
+            @CastSpell.performed -= instance.OnCastSpell;
+            @CastSpell.canceled -= instance.OnCastSpell;
+        }
+
+        public void RemoveCallbacks(IDebugKeysActions instance)
+        {
+            if (m_Wrapper.m_DebugKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDebugKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DebugKeysActions @DebugKeys => new DebugKeysActions(this);
     public interface ICharacterControlsActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -634,5 +915,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnPause(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+    }
+    public interface IDebugKeysActions
+    {
+        void OnDebug(InputAction.CallbackContext context);
+        void OnGenerateIsland(InputAction.CallbackContext context);
+        void OnGenerateIslandUp(InputAction.CallbackContext context);
+        void OnGenerateIslandRight(InputAction.CallbackContext context);
+        void OnGenerateIslandDown(InputAction.CallbackContext context);
+        void OnGenerateIslandLeft(InputAction.CallbackContext context);
+        void OnDamageEnemy(InputAction.CallbackContext context);
+        void OnCastSpell(InputAction.CallbackContext context);
     }
 }

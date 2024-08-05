@@ -18,7 +18,7 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "1a56e10e-7322-4e62-b930-cdd5789cf68d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -36,7 +36,7 @@
                     "name": "CameraRotateRight",
                     "type": "Button",
                     "id": "103e1b7a-cb19-4271-a39b-bd061f632d3d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -54,7 +54,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "762e2d40-8876-4b43-b9b9-1ee3e3ee51e6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,7 +63,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "5b1e6949-9634-404f-ae7e-3c5e0b4af191",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -355,6 +355,174 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "DebugKeys",
+            "id": "0ad0f07a-2c98-4a47-9bcd-d0c5ecdfc0ce",
+            "actions": [
+                {
+                    "name": "Debug",
+                    "type": "PassThrough",
+                    "id": "053c73c8-e4c9-4811-a7dc-be3224a5283a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GenerateIsland",
+                    "type": "Button",
+                    "id": "76cbd96f-ff6b-4b5e-abff-49427fb96af9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GenerateIslandUp",
+                    "type": "Button",
+                    "id": "18f4872a-26bf-4950-a427-0b1b42afc08f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GenerateIslandRight",
+                    "type": "Button",
+                    "id": "00305b15-a918-4f7f-9153-70e97afbb1ec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GenerateIslandDown",
+                    "type": "Button",
+                    "id": "cf884c95-7a02-478a-8543-082a5382da33",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GenerateIslandLeft",
+                    "type": "Button",
+                    "id": "64b5f599-57a1-41be-89c5-a2fdb91a87b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DamageEnemy",
+                    "type": "Button",
+                    "id": "581a7e2b-f6f7-4f22-8900-5b6c3c65477b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CastSpell",
+                    "type": "Button",
+                    "id": "ee1b8940-71b1-47c5-8646-d7b3324008f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5ea6887-5b29-497c-89a2-418473176ab4",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Debug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea4dedbc-f78a-4048-bc8b-d864ad77b20f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc0374b9-b5bd-45f5-a6e0-429227a3c17f",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIslandUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea1bf0a2-dc8e-4263-b37b-e94b0ef00cfa",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIslandRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83f78b40-5f5e-4ea3-aed0-ddce86182f8c",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIslandDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49b4b9ed-08e2-46da-ac57-91f7d14c1f99",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIslandLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a301860-a7e2-4f85-a021-b1c9cbce9d32",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DamageEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4fffc0f8-d3b4-4b33-9b30-930c81be9322",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CastSpell",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

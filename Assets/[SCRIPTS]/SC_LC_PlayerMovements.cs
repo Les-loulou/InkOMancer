@@ -47,8 +47,8 @@ public class SC_LC_PlayerMovements : MonoBehaviour
     void PlayerMovements()
     {
         //POSITION
-        float xDirection = player.controls.direction.x; //Stores the X position of the joystick to the "xDirection" variable
-        float zDirection = player.controls.direction.y; //Stores the Z position of the joystick to the "zDirection" variable
+        float xDirection = player.inputs.direction.x; //Stores the X position of the joystick to the "xDirection" variable
+        float zDirection = player.inputs.direction.y; //Stores the Z position of the joystick to the "zDirection" variable
 
 		Vector3 forwardCam = cam.transform.forward; //Stores the forward vector of the camera to the "forwardCam" variable
 		Vector3 rightCam = cam.transform.right; //Stores the right vector of the camera to the "rightCam" variable
@@ -66,7 +66,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         //ROTATION
         float targetAngle = Mathf.Atan2(xDirection, zDirection) * Mathf.Rad2Deg + cam.transform.eulerAngles.y; //J'en sais rien frère go google
 
-        if (player.controls.direction.magnitude >= 0.01f) //If the player is moving
+        if (player.inputs.direction.magnitude >= 0.01f) //If the player is moving
             transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, targetAngle, Time.deltaTime * currentRotationSpeed), 0); //Rotates the player smoothly between it's current rotation and the previously set rotation
 
         //CONTROLS
@@ -75,7 +75,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
 
     void PlayerSpeed()
     {
-        if (player.controls.sprintPressed == true) //If the player is sprinting
+        if (player.inputs.sprintPressed == true) //If the player is sprinting
         {
             currentSpeed = moveSpeed * sprintMultiplier; //Sets the player's movement speed by multiplying the current movement speed with the sprint speed multiplier
             currentRotationSpeed = moveRotationSpeed * sprintMultiplier; //Sets the player's rotation speed by multiplying the current rotation speed with the sprint multiplier
@@ -96,10 +96,10 @@ public class SC_LC_PlayerMovements : MonoBehaviour
 
     void PlayerMouseMovements()
     {
-        if (player.controls.direction.magnitude >= 0.01f) //If the player is moving
+        if (player.inputs.direction.magnitude >= 0.01f) //If the player is moving
             agent.isStopped = true; //Stop agent to move to destination
 
-		if (player.controls.movementClicked == true)
+		if (player.inputs.movementClicked == true)
         {
 			agent.isStopped = false;
 			Ray ray = cam.ScreenPointToRay(Input.mousePosition);

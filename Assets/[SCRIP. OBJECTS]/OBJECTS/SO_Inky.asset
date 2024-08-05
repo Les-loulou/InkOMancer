@@ -18,5 +18,5 @@ MonoBehaviour:
   acceleration: 2
   randomSize: {x: 0.75, y: 1.25}
   drops:
-  - dropPrefab: {fileID: 763978935762653005, guid: f87b2424b33e7614fb1b899fc7a01ce1, type: 3}
+  - dropPrefab: {fileID: 4251105003677718460, guid: 22f2248f79a0c43409b49d4a1bf16b9a, type: 3}
     dropChance: 50
