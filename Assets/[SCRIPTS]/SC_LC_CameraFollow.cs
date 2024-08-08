@@ -8,7 +8,9 @@ public class SC_LC_CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        transform.position = target.position;
+        target = SC_LC_PlayerGlobal.instance.transform;
+
+        transform.position = target.transform.position;
     }
 
     void LateUpdate()
