@@ -29,8 +29,7 @@ public class SC_LQ_SpellCast : MonoBehaviour
             {
                 //Instantiate empty GameObject and Add SpellEffect
                 Component ActualRune = Gobranch.AddComponent(branch.Runes[i].GetType()); // Add component on Gameobject's Child
-                //myBranch.branch.SetRunesList(myBranch);
-
+                myBranch.branch.SetRunesList(myBranch);
 
                 //myBranch.branch.Runes.Add(ActualRune); //Add to the branch's list the new spell effect
 
@@ -50,20 +49,19 @@ public class SC_LQ_SpellCast : MonoBehaviour
                 ////newSpellBranch.AddComponent(effectSpell.GetType());
                 #endregion
             }
+
+            myBranch.FinishAddRunes();
         }
     }
 
     private void Update()
     {
-        //if (player.inputs.castSpellPressed == true)
-        //{
-        //    LaunchSpell();
-        //}
-
-        if (Input.GetKeyUp(KeyCode.P))
+        //CTRL + A
+        if (SC_LC_PlayerGlobal.instance.inputs.castSpellPressed == true)
         {
             LaunchSpell();
         }
+
     }
 }
 

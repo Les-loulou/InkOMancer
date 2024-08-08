@@ -5,8 +5,8 @@ public class SC_LQ_SpellRune : MonoBehaviour
 {
 
     //public int indexEffect;
-    public SC_LQ_SpellGlobal spell;
-    public SC_LQ_Spell_Branch branch;
+    [HideInInspector] public SC_LQ_SpellGlobal spell;
+    [HideInInspector] public SC_LQ_Spell_Branch branch;
     public bool isActif = false;
 
 
@@ -30,11 +30,6 @@ public class SC_LQ_SpellRune : MonoBehaviour
         return index > 0 ? branch.branch.Runes[index + 1] : null;
     }
 
-    public virtual void ActiveEffect()
-    {
-        print(this + " Activated !");
-    }
-
     public virtual void Effect()
     {
         if (isActif == false)
@@ -48,7 +43,6 @@ public class SC_LQ_SpellRune : MonoBehaviour
     /// </summary>
     public virtual void Output()
     {
-
 
         //Activer l'effet du sort après moi
         if (GetNextRune() != null)
