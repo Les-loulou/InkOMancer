@@ -497,9 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  branch: {fileID: 0}
   isActif: 0
-  previousEffect: {fileID: 0}
-  nextEffect: {fileID: 0}
   direction: 0
 --- !u!114 &26350396
 MonoBehaviour:
@@ -514,9 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  branch: {fileID: 0}
   isActif: 0
-  previousEffect: {fileID: 0}
-  nextEffect: {fileID: 0}
   direction: 0
 --- !u!54 &26350397
 Rigidbody:
@@ -558,9 +556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  branch: {fileID: 0}
   isActif: 0
-  previousEffect: {fileID: 0}
-  nextEffect: {fileID: 0}
 --- !u!114 &26350399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,9 +571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  branch: {fileID: 0}
   isActif: 0
-  previousEffect: {fileID: 0}
-  nextEffect: {fileID: 0}
 --- !u!43 &34593271
 Mesh:
   m_ObjectHideFlags: 0
@@ -27130,9 +27126,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shape: {fileID: 9049480625463408734, guid: bd453540e016b244181c1866c4ce8964, type: 3}
   Branch:
-  - effects:
+  - Runes:
     - {fileID: 26350395}
     - {fileID: 26350398}
+    - {fileID: 26350399}
+  - Runes:
+    - {fileID: 26350399}
     - {fileID: 26350396}
   spellBranch: {fileID: 8153513454433983935, guid: 4e670a8455d9b614d8e7ef1fa4749acc, type: 3}
 --- !u!43 &1510381197
