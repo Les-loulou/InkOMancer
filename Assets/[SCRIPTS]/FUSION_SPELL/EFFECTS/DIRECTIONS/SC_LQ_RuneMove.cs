@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SC_LQ_RuneMove : SC_LQ_SpellEffect
+public class SC_LQ_RuneMove : SC_LQ_SpellRune
 {
 
     public enum Direction { Forward, Backward, Right, Left };
@@ -10,14 +9,12 @@ public class SC_LQ_RuneMove : SC_LQ_SpellEffect
 
     Rigidbody rb;
 
-    public override void Awake()
-    {
-        if (GetComponent<Rigidbody>() == null)
-        {
-            this.AddComponent<Rigidbody>();
-        }
 
-        rb = GetComponent<Rigidbody>();
+    public override void Start()
+    {
+        base.Start();
+
+        rb = spell.rb;
     }
 
     public override void FixedUpdate()
@@ -46,9 +43,9 @@ public class SC_LQ_RuneMove : SC_LQ_SpellEffect
                 break;
         }
 
-        base.Effect();
-        rb.AddForce(transform.rotation * dir * spell.speed, ForceMode.VelocityChange);
+        //rb.AddForce(spell.transform.rotation * dir * spell.speed, ForceMode.VelocityChange);
 
+        base.Effect();
         Output();
     }
 }

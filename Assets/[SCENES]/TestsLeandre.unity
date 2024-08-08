@@ -457,29 +457,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 26350394}
-  - component: {fileID: 26350386}
   - component: {fileID: 26350395}
   - component: {fileID: 26350396}
+  - component: {fileID: 26350398}
+  - component: {fileID: 26350399}
+  - component: {fileID: 26350397}
   m_Layer: 0
   m_Name: Spell Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &26350386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26350384}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9370596f2bcf76c488f484037b0e8e58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell: {fileID: 0}
 --- !u!4 &26350394
 Transform:
   m_ObjectHideFlags: 0
@@ -502,12 +491,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26350384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23374eca3bac6304f88c14022fabd6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  isActif: 0
+  previousEffect: {fileID: 0}
+  nextEffect: {fileID: 0}
   direction: 0
 --- !u!114 &26350396
 MonoBehaviour:
@@ -516,13 +508,75 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26350384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f4e7a297db46684d866173fed6ef127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  isActif: 0
+  previousEffect: {fileID: 0}
+  nextEffect: {fileID: 0}
   direction: 0
+--- !u!54 &26350397
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26350384}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &26350398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26350384}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e3e59c390529042bc7b0a680a48271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 0}
+  isActif: 0
+  previousEffect: {fileID: 0}
+  nextEffect: {fileID: 0}
+--- !u!114 &26350399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26350384}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1e2ad0efc71da40b530cf66870c6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 0}
+  isActif: 0
+  previousEffect: {fileID: 0}
+  nextEffect: {fileID: 0}
 --- !u!43 &34593271
 Mesh:
   m_ObjectHideFlags: 0
@@ -27069,13 +27123,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499552536}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbf2c6faea8d18e44adca26666cfe72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shape: {fileID: 9049480625463408734, guid: bd453540e016b244181c1866c4ce8964, type: 3}
-  Branch: []
+  Branch:
+  - effects:
+    - {fileID: 26350395}
+    - {fileID: 26350398}
+    - {fileID: 26350396}
+  spellBranch: {fileID: 8153513454433983935, guid: 4e670a8455d9b614d8e7ef1fa4749acc, type: 3}
 --- !u!43 &1510381197
 Mesh:
   m_ObjectHideFlags: 0

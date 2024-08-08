@@ -1,11 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class SC_LQ_EFFECT_RuneTeleport : SC_LQ_SpellEffect
+public class SC_LQ_RuneTeleport : SC_LQ_SpellRune
 {
     public enum Direction { Forward, Backward, Right, Left };
 
     public Direction direction = Direction.Forward;
+
+    private void Awake()
+    {
+        base.Awake();
+    }
 
     public override void Effect()
     {
@@ -30,8 +35,10 @@ public class SC_LQ_EFFECT_RuneTeleport : SC_LQ_SpellEffect
 
 
         base.Effect();
-        transform.position += dir ;
+        //spell.transform.position += dir ;
 
         Output();
+
+        this.enabled = false;
     }
 }
