@@ -15,15 +15,19 @@ public class SC_LQ_RuneMove : SC_LQ_SpellRune
         base.Start();
 
         rb = spell.rb;
+
+        Output();
     }
 
     public override void FixedUpdate()
     {
-        Effect();
+        Effect(null);
     }
 
-    public override void Effect()
+    public override void Effect(GameObject nothing)
     {
+        base.Effect(null);
+
         Vector3 dir = Vector3.zero;
         switch (direction)
         {
@@ -43,9 +47,8 @@ public class SC_LQ_RuneMove : SC_LQ_SpellRune
                 break;
         }
 
-        //rb.AddForce(spell.transform.rotation * dir * spell.speed, ForceMode.VelocityChange);
 
-        base.Effect();
-        Output();
+        
+        rb.linearVelocity = spell.transform.rotation * dir * spell.speed;
     }
 }

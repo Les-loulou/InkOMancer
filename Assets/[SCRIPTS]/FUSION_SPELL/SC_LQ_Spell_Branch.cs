@@ -27,6 +27,7 @@ public class BranchEffect
         foreach (SC_LQ_SpellRune rune in tempoRune)
         {
             Runes.Add(rune);
+            rune.enabled = true;
         }
     }
 }

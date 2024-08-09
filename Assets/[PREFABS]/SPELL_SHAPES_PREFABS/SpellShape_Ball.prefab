@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f4aec3de37e48439e7c66fb673f790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 1
-  isDestroyingToContact: 1
+  contactBeforeDestroy: 2
   rb: {fileID: 0}

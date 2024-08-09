@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class SC_LQ_RuneTeleport : SC_LQ_SpellRune
@@ -7,13 +6,13 @@ public class SC_LQ_RuneTeleport : SC_LQ_SpellRune
 
     public Direction direction = Direction.Forward;
 
-    private void Awake()
-    {
-        base.Awake();
-    }
+    float power = 5;
 
-    public override void Effect()
+    public override void Effect(GameObject nothing)
     {
+        base.Effect(null);
+        //Le faire en continue et mettre un wait ???
+
         Vector3 dir = Vector3.zero;
         switch (direction)
         {
@@ -33,12 +32,19 @@ public class SC_LQ_RuneTeleport : SC_LQ_SpellRune
                 break;
         }
 
-
-        base.Effect();
-        //spell.transform.position += dir ;
+        spell.transform.position += (spell.transform.rotation * dir) * power;
 
         Output();
-
-        this.enabled = false;
     }
+
+    public override void SetRuneState(bool state)
+    {
+        base.SetRuneState(state);
+
+        if (state == true)
+        {
+            Effect(null);
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ public class SC_LQ_SpellRune : MonoBehaviour
     public bool isActif = false;
 
 
-    public void SetRuneState(bool state)
+    public virtual void SetRuneState(bool state)
     {
         isActif = state;
     }
@@ -30,7 +30,7 @@ public class SC_LQ_SpellRune : MonoBehaviour
         return index > 0 ? branch.branch.Runes[index + 1] : null;
     }
 
-    public virtual void Effect()
+    public virtual void Effect(GameObject gameObject)
     {
         if (isActif == false)
         {
