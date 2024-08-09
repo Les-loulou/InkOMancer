@@ -52,8 +52,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _time: 12
+    - _time: 20.6
     m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _Mask: {r: 1, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
