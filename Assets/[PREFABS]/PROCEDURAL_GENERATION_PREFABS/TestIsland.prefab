@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1401425698959424114}
   - component: {fileID: 5017245949420166861}
   - component: {fileID: 4641654762185149948}
-  - component: {fileID: 2728279397881445224}
+  - component: {fileID: 5232659932587481945}
   m_Layer: 0
   m_Name: TestIsland
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2728279397881445224
+--- !u!65 &5232659932587481945
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

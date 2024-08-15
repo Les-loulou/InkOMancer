@@ -8,12 +8,14 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 
 	[Space]
 	public GameObject deathParticle;
-	public Slider healthBar;
+	public GameObject healthBar;
+	public Slider healthBarSlider;
 
 	[Space]
-	float health;
+	public float health;
 	[HideInInspector] public float maxHealth;
-	[HideInInspector] public float smoothHealth;
+	/*[HideInInspector] */
+	public float smoothHealth;
 	public float healthSpeed = 10f;
 
 	void Start()
@@ -25,8 +27,8 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 		maxHealth = enemy.stats.health;
 		smoothHealth = enemy.stats.health;
 
-		healthBar.maxValue = maxHealth;
-		healthBar.value = maxHealth;
+		healthBarSlider.maxValue = maxHealth;
+		healthBarSlider.value = maxHealth;
 	}
 
 	void Update()
@@ -35,10 +37,8 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 		smoothHealth = Mathf.Lerp(smoothHealth, health, Time.deltaTime * healthSpeed);
 
 		if (healthBar != null && smoothHealth >= 0.5f)
-			healthBar.value = smoothHealth;
-		else
 		{
-			//Destroy(healthBar);
+			healthBarSlider.value = smoothHealth;
 		}
 
 		if (player.inputs.damageEnemyPressed == true) //DEBUG
@@ -67,7 +67,7 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 
 	public void DeathParticle()
 	{
-		//Instantiate(deathParticle, transform.position, Quaternion.identity);
+		Instantiate(deathParticle, transform.position, Quaternion.identity);
 	}
 
 	public void DestroyEnemy()

@@ -17,6 +17,8 @@ public class SC_LC_PlayerControls : MonoBehaviour
 	public bool debugPressed;
 
 	public bool createIslandPressed;
+	public bool rerollIslandsPressed;
+
 	public bool upIslandPressed;
 	public bool rightIslandPressed;
 	public bool downIslandPressed;
@@ -136,7 +138,9 @@ public class SC_LC_PlayerControls : MonoBehaviour
         {
             createIslandPressed = input.DebugKeys.GenerateIsland.triggered;
 
-            upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
+            rerollIslandsPressed = input.DebugKeys.RerollIslands.triggered;
+
+			upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
             rightIslandPressed = input.DebugKeys.GenerateIslandRight.triggered;
             downIslandPressed = input.DebugKeys.GenerateIslandDown.triggered;
             leftIslandPressed = input.DebugKeys.GenerateIslandLeft.triggered;

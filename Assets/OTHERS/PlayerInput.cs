@@ -458,6 +458,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RerollIslands"",
+                    ""type"": ""Button"",
+                    ""id"": ""60d417ef-9547-4da4-b553-66ffc1d514c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -548,6 +557,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""CastSpell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6751a79-b358-4f48-8a4c-a2da3b47b336"",
+                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RerollIslands"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -578,6 +598,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_DebugKeys_GenerateIslandLeft = m_DebugKeys.FindAction("GenerateIslandLeft", throwIfNotFound: true);
         m_DebugKeys_DamageEnemy = m_DebugKeys.FindAction("DamageEnemy", throwIfNotFound: true);
         m_DebugKeys_CastSpell = m_DebugKeys.FindAction("CastSpell", throwIfNotFound: true);
+        m_DebugKeys_RerollIslands = m_DebugKeys.FindAction("RerollIslands", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -810,6 +831,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_DebugKeys_GenerateIslandLeft;
     private readonly InputAction m_DebugKeys_DamageEnemy;
     private readonly InputAction m_DebugKeys_CastSpell;
+    private readonly InputAction m_DebugKeys_RerollIslands;
     public struct DebugKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -822,6 +844,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @GenerateIslandLeft => m_Wrapper.m_DebugKeys_GenerateIslandLeft;
         public InputAction @DamageEnemy => m_Wrapper.m_DebugKeys_DamageEnemy;
         public InputAction @CastSpell => m_Wrapper.m_DebugKeys_CastSpell;
+        public InputAction @RerollIslands => m_Wrapper.m_DebugKeys_RerollIslands;
         public InputActionMap Get() { return m_Wrapper.m_DebugKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -855,6 +878,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CastSpell.started += instance.OnCastSpell;
             @CastSpell.performed += instance.OnCastSpell;
             @CastSpell.canceled += instance.OnCastSpell;
+            @RerollIslands.started += instance.OnRerollIslands;
+            @RerollIslands.performed += instance.OnRerollIslands;
+            @RerollIslands.canceled += instance.OnRerollIslands;
         }
 
         private void UnregisterCallbacks(IDebugKeysActions instance)
@@ -883,6 +909,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CastSpell.started -= instance.OnCastSpell;
             @CastSpell.performed -= instance.OnCastSpell;
             @CastSpell.canceled -= instance.OnCastSpell;
+            @RerollIslands.started -= instance.OnRerollIslands;
+            @RerollIslands.performed -= instance.OnRerollIslands;
+            @RerollIslands.canceled -= instance.OnRerollIslands;
         }
 
         public void RemoveCallbacks(IDebugKeysActions instance)
@@ -926,5 +955,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnGenerateIslandLeft(InputAction.CallbackContext context);
         void OnDamageEnemy(InputAction.CallbackContext context);
         void OnCastSpell(InputAction.CallbackContext context);
+        void OnRerollIslands(InputAction.CallbackContext context);
     }
 }
