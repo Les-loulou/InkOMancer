@@ -6,55 +6,33 @@ public class SC_LQ_SpellRune : MonoBehaviour
 
     //public int indexEffect;
     [HideInInspector] public SC_LQ_SpellGlobal spell;
-    [HideInInspector] public SC_LQ_Spell_Branch branch;
-    public bool isActif = false;
 
+    public SO_Rune runeSO;
 
-    public virtual void SetRuneState(bool state)
+    public float currentInk;
+    public float costInk;
+    public float damage;
+
+    //Faire s'abonner la fonction Effect quand on veut déclencher les effets ???
+    public virtual void Effect()
     {
-        isActif = state;
+
+        //Faire spawn une créature amie
+        //Faire bruler la cible (Add Component)
     }
 
-    public SC_LQ_SpellRune GetNextRune()
+    public virtual void TouchEnemy(GameObject enemy)
     {
-        int index = branch.branch.Runes.IndexOf(this);
-
-        return index + 1 < branch.branch.Runes.Count ? branch.branch.Runes[index + 1] : null;
-
-    }
-
-    public SC_LQ_SpellRune GetPreviousRune()
-    {
-        int index = branch.branch.Runes.IndexOf(this);
-
-        return index > 0 ? branch.branch.Runes[index + 1] : null;
-    }
-
-    public virtual void Effect(GameObject gameObject)
-    {
-        if (isActif == false)
-        {
-            return;
-        }
-    }
-
-    /// <summary>
-    /// Function Call output and start next runes
-    /// </summary>
-    public virtual void Output()
-    {
-
-        //Activer l'effet du sort après moi
-        if (GetNextRune() != null)
-        {
-            GetNextRune().SetRuneState(true);
-        }
+        //Call Touch Enemy in my parents
+        SC_LC_PlayerGlobal.instance.GetComponent<SC_LQ_SpellCast>().TouchEnemy();
     }
 
     public virtual void Awake()
     {
         spell = transform.root.GetComponent<SC_LQ_SpellGlobal>();
-        branch = GetComponent<SC_LQ_Spell_Branch>();
+        spell.MyCollisionEnter += OnCollisionEnter;
+        spell.MyTriggerEnter += OnTriggerEnter;
+
     }
 
     #region FunctionBase
@@ -70,10 +48,6 @@ public class SC_LQ_SpellRune : MonoBehaviour
 
     public virtual void Update()
     {
-        if (isActif == false)
-        {
-            return;
-        }
 
     }
 
@@ -84,12 +58,18 @@ public class SC_LQ_SpellRune : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-
+        if(other.gameObject.GetComponent<SC_LQ_EnemyGlobal>())
+        {
+            TouchEnemy(other.gameObject);
+        }
     }
 
     public virtual void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.gameObject.GetComponent<SC_LQ_EnemyGlobal>())
+        {
+            TouchEnemy(collision.gameObject);
+        }
     }
     #endregion
 

@@ -1,65 +1,80 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SC_LQ_SpellCast : MonoBehaviour
 {
     SC_LC_PlayerGlobal player;
 
-    public GameObject shape;
+    public GameObject spell;
 
-    public List<BranchEffect> Branch;
+    public List<SO_Rune> runesScriptable ;
+    public List<SC_LQ_SpellRune> runes;
+    public SC_LQ_SpellRune[] runesActifs = new SC_LQ_SpellRune[2];
 
-    public GameObject spellBranch;
 
+    private void Start()
+    {
+        
+        foreach (SO_Rune soRune in runesScriptable)
+        {
+            runes.Add(soRune.runeScript.GetComponent<SC_LQ_SpellRune>());
+        }
+
+        //Active Runes
+        for (int i = 0; i < 2; i++)
+        {
+            runesActifs.SetValue(runes[0], i);
+            runes.RemoveAt(0);
+            runes.Add(runesActifs[i]);
+        }
+
+    }
 
     public void LaunchSpell()
     {
-        GameObject currentSpell = Instantiate(shape, transform.position, transform.rotation);//Instantiate spell Shape
+        GameObject currentSpell = Instantiate(spell, transform.position, transform.rotation);//Instantiate spell Shape
 
-        
-        foreach (BranchEffect branch in Branch)
+        foreach (SC_LQ_SpellRune rune in runesActifs)
         {
-            
-            GameObject Gobranch = Instantiate(spellBranch, currentSpell.transform);    //Create GameObject 
-            SC_LQ_Spell_Branch myBranch = Gobranch.AddComponent<SC_LQ_Spell_Branch>(); //and add Branch Component
-
-            for (int i = 0; i < branch.Runes.Count; i++)
-            {
-                //Instantiate empty GameObject and Add SpellEffect
-                Component ActualRune = Gobranch.AddComponent(branch.Runes[i].GetType()); // Add component on Gameobject's Child
-                myBranch.branch.SetRunesList(myBranch);
-
-                //myBranch.branch.Runes.Add(ActualRune); //Add to the branch's list the new spell effect
-
-                #region COMMENTARY
-                //Don't work
-                ////Set Previous and Next Spell Effect
-                //
-                //if (effect.effects.Count > i + 1)
-                //{
-                //    newEffect.GetType(SC_LQ_SpellEffect).nextEffect = newEffect.GetComponent<SC_LQ_SpellEffect>().nextEffect = effect.effects[i + 1];
-                //}
-                //if (i > 0)
-                //{
-                //    newEffect.GetComponent<SC_LQ_SpellEffect>().previousEffect = effect.effects[i - 1];
-                //}
-                //
-                ////newSpellBranch.AddComponent(effectSpell.GetType());
-                #endregion
-            }
-
-            myBranch.FinishAddRunes();
+            currentSpell.AddComponent(rune.GetType());
         }
+
+    }
+
+    public void TouchEnemy()
+    {
+
+    }
+
+    public void ChangeRune(SC_LQ_SpellRune oldRune)
+    {
+        //runesActifs.SetValue(runes[0], ArrayUtility.IndexOf(runesActifs, oldRune));
+        //runes.RemoveAt(0);
+        //runes.Add(oldRune);
+
     }
 
     private void Update()
     {
+        //To replace by Click on Enemy
         //CTRL + A
         if (SC_LC_PlayerGlobal.instance.inputs.castSpellPressed == true)
         {
             LaunchSpell();
+        }
+
+        foreach (SC_LQ_SpellRune rune in runesActifs)
+        {
+            //if(rune.currentInk <=0)
+            //{
+            //    ChangeRune(rune);
+            //}
+            //break;
         }
 
     }
