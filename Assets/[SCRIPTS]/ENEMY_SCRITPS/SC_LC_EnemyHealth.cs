@@ -23,9 +23,9 @@ public class SC_LC_EnemyHealth : MonoBehaviour
 		enemy = GetComponent<SC_LQ_EnemyGlobal>();
 		player = SC_LC_PlayerGlobal.instance;
 
-		health = enemy.stats.health;
-		maxHealth = enemy.stats.health;
-		smoothHealth = enemy.stats.health;
+		health = enemy.enemy.health;
+		maxHealth = enemy.enemy.health;
+		smoothHealth = enemy.enemy.health;
 
 		healthBarSlider.maxValue = maxHealth;
 		healthBarSlider.value = maxHealth;

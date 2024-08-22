@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SC_LQ_EFFECT_Duplicata : SC_LQ_SpellEffect
+public class SC_LQ_EFFECT_Duplicata : SC_LQ_SpellRune
 {
     //If is the first component to be had, wait until all component has been place a instantiate same gameObject
 

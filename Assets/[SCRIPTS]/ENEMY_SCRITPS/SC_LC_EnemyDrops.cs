@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SC_LC_EnemyDrops : MonoBehaviour
 {
-	[SerializeField] SO_EnemyStats enemySO;
+	 SO_EnemyStats enemySO;
 	public List<GameObject> currentDrops = new();
 
 	[Space]
@@ -26,12 +26,8 @@ public class SC_LC_EnemyDrops : MonoBehaviour
 
 	void Awake()
 	{
+		enemySO = GetComponent<SC_LQ_EnemyGlobal>().enemy;
 		GenerateDrops(); //Generates the drops pool of the enemy 
-	}
-
-	private void Update()
-	{
-		SetBasePosition(); //Sets the base position of the enemy
 	}
 
 	public void GenerateDrops()
@@ -88,9 +84,9 @@ public class SC_LC_EnemyDrops : MonoBehaviour
 		float randomX = Random.Range(xRange.x, xRange.y); //Sets a random value on X
 		float randomZ = Random.Range(zRange.x, zRange.y); //Sets a random value on Z
 
-		float xPos = transform.localPosition.x + randomX; //Sets X position based on the enemy's position + the random X position
+		float xPos = transform.position.x + randomX; //Sets X position based on the enemy's position + the random X position
 		float yPos = _currentDrop.transform.position.y + enemyBasePos.y; //Sets Y position based on the drop's Y position + the enemy's base Y position
-		float zPos = transform.localPosition.z + randomZ; //Sets Z position based on the enemy's position + the random Z position
+		float zPos = transform.position.z + randomZ; //Sets Z position based on the enemy's position + the random Z position
 
 		return new Vector3(xPos, yPos, zPos); //Returns a new Vector3 based on the previous axis
 	}
@@ -120,6 +116,7 @@ public class SC_LC_EnemyDrops : MonoBehaviour
 
 	public void DropItems()
 	{
-		StartCoroutine(DropLootsCoroutine());
+        SetBasePosition(); //Sets the base position of the enemy
+        StartCoroutine(DropLootsCoroutine());
 	}
 }
