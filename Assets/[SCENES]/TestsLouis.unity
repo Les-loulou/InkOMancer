@@ -146,8 +146,8 @@ Transform:
   m_GameObject: {fileID: 32671792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.689917, y: 25.04409, z: -35.37577}
-  m_LocalScale: {x: 2.6705, y: 2.6705, z: 2.6705}
+  m_LocalPosition: {x: -28.5454, y: 25.04409, z: -35.37577}
+  m_LocalScale: {x: 2.899362, y: 2.6705, z: 2.6705}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 531056937}
@@ -4932,15 +4932,19 @@ MonoBehaviour:
   start: {fileID: 1898639136}
   gridParent: {fileID: 415351069}
   chunkPrefab: {fileID: 2914895896220912548, guid: e01a66fd83ace8b4eb135f1544fc2b57, type: 3}
+  autoGenerate: 1
   xLength: 20
   zLength: 20
   chunkOffset: 5
   prefabs:
   - {fileID: 4823443795552072870, guid: 921eeb78374ddb044984acb68564c797, type: 3}
+  islandsCountRange: {x: 20, y: 25}
+  branchesCountRange: {x: 0, y: 0}
   islandsCount: 0
-  minIslands: 20
-  maxIslands: 25
+  currentIslandsCount: 0
+  waitBeforeNextIsland: 0.05
   islands: []
+  branchableChunks: []
 --- !u!4 &1129392505
 Transform:
   m_ObjectHideFlags: 0
@@ -5579,6 +5583,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   debugPressed: 0
   createIslandPressed: 0
+  rerollIslandsPressed: 0
   upIslandPressed: 0
   rightIslandPressed: 0
   downIslandPressed: 0
