@@ -5,13 +5,11 @@ public class SC_LQ_Rune_TargetMore : SC_LQ_SpellRune
 {
     public int numberTarget = 5;
 
+
     public override void Awake()
     {
+        runeName = "TargetMore";
         base.Awake();
-
-        currentInk = 10;
-        costInk = 1;
-        damage = 1;
     }
 
     public override void Start()
@@ -22,6 +20,7 @@ public class SC_LQ_Rune_TargetMore : SC_LQ_SpellRune
 
     public override void Effect()
     {
+        base.Effect();
         StartCoroutine(EffectAndWait());
     }
 
@@ -50,7 +49,7 @@ public class SC_LQ_Rune_TargetMore : SC_LQ_SpellRune
                 }
             }
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 }

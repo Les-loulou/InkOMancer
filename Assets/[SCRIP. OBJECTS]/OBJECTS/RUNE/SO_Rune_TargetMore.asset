@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808733c9bb39ad4bacfe65dcec0437a, type: 3}
   m_Name: SO_Rune_TargetMore
   m_EditorClassIdentifier: 
+  runeName: TargetMore
   runeScript: {fileID: 2272726000921585249, guid: 0dfb478477cfe57488e3fd39c4261005, type: 3}
+  currentLevel: 0
+  inkAmount:
+  - 100
+  costInk:
+  - 20
+  damage:
+  - 100
+  remainingInk: 15
+  actualInkCost: 1
+  actualDamage: 100

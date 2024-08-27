@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808733c9bb39ad4bacfe65dcec0437a, type: 3}
   m_Name: SO_Rune_Lifesteal
   m_EditorClassIdentifier: 
+  runeName: Lifesteal
   runeScript: {fileID: 8370638867616525478, guid: 76e79275d04a2bd40bb97a6809d0fef0, type: 3}
+  currentLevel: 0
+  inkAmount:
+  - 100
+  costInk:
+  - 10
+  damage:
+  - 100
+  remainingInk: 18
+  actualInkCost: 1
+  actualDamage: 100

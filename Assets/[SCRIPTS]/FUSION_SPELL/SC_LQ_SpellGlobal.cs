@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SC_LQ_SpellGlobal : MonoBehaviour
 {
+    public float damage;
     public float speed;
     public float acceleration = 1f;
     //public float damage;
@@ -14,7 +15,13 @@ public class SC_LQ_SpellGlobal : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = Vector3.Lerp(Vector3.zero, Vector3.Normalize(target.position - transform.position) * speed, acceleration);
+        if (target != null)
+        {
+            rb.linearVelocity = Vector3.Lerp(Vector3.zero, Vector3.Normalize(target.position - transform.position) * speed, acceleration);
+        }
+        else
+            Destroy(gameObject);
+
     }
 
     private void Awake()
@@ -23,6 +30,22 @@ public class SC_LQ_SpellGlobal : MonoBehaviour
 
         SetTarget();
     }
+
+    private void Start()
+    {
+        SetDamage();
+    }
+
+    public void SetDamage()
+    {
+        SC_LQ_SpellRune[] myRunes = GetComponents<SC_LQ_SpellRune>();
+
+        foreach (SC_LQ_SpellRune Actualrune in myRunes)
+        {
+            damage += Actualrune.runeSO.actualDamage;
+        }
+    }
+
 
     public void SetTarget(Transform target)
     {
@@ -71,6 +94,8 @@ public class SC_LQ_SpellGlobal : MonoBehaviour
 
         if (contact.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            contact.GetComponent<SC_LC_EnemyHealth>().Damage(-damage);
+
             contactBeforeDestroy--;
             if (contactBeforeDestroy <= 0)
             {
