@@ -39,7 +39,7 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	[Header("PARAMETERS")]
 	[SerializeField] Vector2 islandsCountRange;
 	[Space]
-	[SerializeField] Vector2 branchesCountRange;
+	[SerializeField] Vector2 branchesRange;
 	[Space]
 	[SerializeField] int islandsCount;
 	[SerializeField] int currentIslandsCount;
@@ -131,7 +131,7 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	}
 
 	[ContextMenu("Clear all chunks")]
-	void ClearAll()
+	void ClearChunks()
 	{
 		islands.Clear(); //Clears the islands list
 		branchableChunks.Clear(); //Clears the branchable chunks list
@@ -162,30 +162,10 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 		if (islandsCount < islandsCountRange.x) //If the number of island is below the minimum number of islands required
 			RerollIslands(); //Restarts the generation process
 		else
-			SetBranchableChunks(); //Sets the chunks that could be new branches
-	}
-
-	IEnumerator GenerateBranches()
-	{
-		int randomBranchesCount = (int)Random.Range(branchesCountRange.x, branchesCountRange.y);
-
-
-		//Debug.Log("Nombre de branches : " + randomBranchesCount);
-
-		for (int i = 0; i < randomBranchesCount; i++)
 		{
-			//CreateIsland(islandsCount, _chunk.Value.coordinates);
+			SetBranchableChunks(); //Sets the chunks that could start new branches
+			CreateRandomBranches();
 		}
-
-		yield return new WaitForSeconds(waitBeforeNextIsland); //Waits before the next step
-	}
-
-	void SetBranchableChunks()
-	{
-		foreach (Island island in islands) //For each generated island
-			foreach (Vector3 direction in chunks[island.coordinates].possibleDirections) //For each adjacent chunks to those islands
-				if (chunks[island.coordinates + direction].island == null && chunks[island.coordinates + direction].possibleDirections.Count == 3) //If the chunk is empty and has 3 empty chunks surrounding it
-					branchableChunks.Add(chunks[island.coordinates + direction]); //Adds this chunk to the branchable chunks list
 	}
 
 	void CreateIsland(int _i, Vector3 _direction)
@@ -238,9 +218,32 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	{
 		StopCoroutine(GenerateIslands());
 
-		ClearAll();
+		ClearChunks();
 
 		StartCoroutine(GenerateIslands());
+	}
+	#endregion
+
+	#region BRANCHES
+	void SetBranchableChunks()
+	{
+		foreach (Island island in islands) //For each generated island
+			foreach (Vector3 direction in chunks[island.coordinates].possibleDirections) //For each adjacent chunks to those islands
+				if (chunks[island.coordinates + direction].island == null && chunks[island.coordinates + direction].possibleDirections.Count == 3) //If the chunk is empty and has 3 empty chunks surrounding it
+					branchableChunks.Add(chunks[island.coordinates]); //Adds this chunk to the branchable chunks list
+	}
+
+	void CreateRandomBranches()
+	{
+		int randomRange = (int)Random.Range(branchesRange.x, branchesRange.y);
+
+		for (int i = 0; i < randomRange; i++)
+		{
+			int randomChunk = Random.Range(0, branchableChunks.Count);
+			CreateIsland(islandsCount, branchableChunks[randomChunk].possibleDirections[0]);
+		}
+
+		//CreateIsland();
 	}
 	#endregion
 
@@ -441,4 +444,10 @@ public class Island
 		this.direction = _direction;
 	}
 }
+
+//public class BranchableChunk
+//{
+//	public Chunk chunk;
+//	public List<Vector3> possibleDirections;
+//}
 #endregion
