@@ -7101,8 +7101,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1838674271}
   healthDisplay: {fileID: 341137307}
-  maxHealth: 100
+  maxHealth: 1000
   currentHealth: 0
+  previousHealth: 0
+  targetHealth: 0
+  healthSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.0749617
+      outSlope: 3.0749617
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15416667
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.008144448
+      outSlope: 0.008144448
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.57916665
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  smoothTime: 0.5
+  debugHealth: -90
 --- !u!1 &1690639312
 GameObject:
   m_ObjectHideFlags: 0
