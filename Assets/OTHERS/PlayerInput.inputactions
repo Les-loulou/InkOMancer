@@ -444,6 +444,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DamagePlayer",
+                    "type": "Button",
+                    "id": "c02f86f5-c2f8-4719-a381-6498654748c8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -543,6 +552,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RerollIslands",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "451ffa0f-4ec5-4874-b72a-27bbcbf3938d",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DamagePlayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,6 +7,7 @@ public class SC_LC_PlayerGlobal : MonoBehaviour
 	[HideInInspector] public SC_LC_PlayerControls inputs;
 	[HideInInspector] public SC_LC_PlayerMovements movements;
 	[HideInInspector] public SC_LC_PlayerInteractions interactions;
+	[HideInInspector] public SC_LC_PlayerHealth health;
 
 	void Awake()
 	{
@@ -23,5 +24,6 @@ public class SC_LC_PlayerGlobal : MonoBehaviour
 		inputs = SC_LC_PlayerControls.instance;
 		movements = GetComponent<SC_LC_PlayerMovements>();
 		interactions = GetComponent<SC_LC_PlayerInteractions>();
+		health = GetComponent<SC_LC_PlayerHealth>();
 	}
 }

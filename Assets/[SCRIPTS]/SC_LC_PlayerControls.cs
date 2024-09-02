@@ -16,6 +16,7 @@ public class SC_LC_PlayerControls : MonoBehaviour
 	[Header("DEBUG")]
 	public bool debugPressed;
 
+    [Space]
 	public bool createIslandPressed;
 	public bool rerollIslandsPressed;
 
@@ -27,6 +28,8 @@ public class SC_LC_PlayerControls : MonoBehaviour
 	public bool damageEnemyPressed;
 
 	public bool castSpellPressed;
+
+	public bool damagePlayerPressed;
 
 	[Header("MOVEMENTS")]
     public bool movementPressed;
@@ -148,6 +151,8 @@ public class SC_LC_PlayerControls : MonoBehaviour
             damageEnemyPressed = input.DebugKeys.DamageEnemy.triggered;
 
 			castSpellPressed = input.DebugKeys.CastSpell.triggered;
+
+            damagePlayerPressed = input.DebugKeys.DamagePlayer.triggered;
 		}
 	}
 

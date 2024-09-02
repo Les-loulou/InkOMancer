@@ -467,6 +467,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DamagePlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""c02f86f5-c2f8-4719-a381-6498654748c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -568,6 +577,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""RerollIslands"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""451ffa0f-4ec5-4874-b72a-27bbcbf3938d"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DamagePlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -599,6 +619,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_DebugKeys_DamageEnemy = m_DebugKeys.FindAction("DamageEnemy", throwIfNotFound: true);
         m_DebugKeys_CastSpell = m_DebugKeys.FindAction("CastSpell", throwIfNotFound: true);
         m_DebugKeys_RerollIslands = m_DebugKeys.FindAction("RerollIslands", throwIfNotFound: true);
+        m_DebugKeys_DamagePlayer = m_DebugKeys.FindAction("DamagePlayer", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -832,6 +853,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_DebugKeys_DamageEnemy;
     private readonly InputAction m_DebugKeys_CastSpell;
     private readonly InputAction m_DebugKeys_RerollIslands;
+    private readonly InputAction m_DebugKeys_DamagePlayer;
     public struct DebugKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -845,6 +867,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @DamageEnemy => m_Wrapper.m_DebugKeys_DamageEnemy;
         public InputAction @CastSpell => m_Wrapper.m_DebugKeys_CastSpell;
         public InputAction @RerollIslands => m_Wrapper.m_DebugKeys_RerollIslands;
+        public InputAction @DamagePlayer => m_Wrapper.m_DebugKeys_DamagePlayer;
         public InputActionMap Get() { return m_Wrapper.m_DebugKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -881,6 +904,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RerollIslands.started += instance.OnRerollIslands;
             @RerollIslands.performed += instance.OnRerollIslands;
             @RerollIslands.canceled += instance.OnRerollIslands;
+            @DamagePlayer.started += instance.OnDamagePlayer;
+            @DamagePlayer.performed += instance.OnDamagePlayer;
+            @DamagePlayer.canceled += instance.OnDamagePlayer;
         }
 
         private void UnregisterCallbacks(IDebugKeysActions instance)
@@ -912,6 +938,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RerollIslands.started -= instance.OnRerollIslands;
             @RerollIslands.performed -= instance.OnRerollIslands;
             @RerollIslands.canceled -= instance.OnRerollIslands;
+            @DamagePlayer.started -= instance.OnDamagePlayer;
+            @DamagePlayer.performed -= instance.OnDamagePlayer;
+            @DamagePlayer.canceled -= instance.OnDamagePlayer;
         }
 
         public void RemoveCallbacks(IDebugKeysActions instance)
@@ -956,5 +985,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDamageEnemy(InputAction.CallbackContext context);
         void OnCastSpell(InputAction.CallbackContext context);
         void OnRerollIslands(InputAction.CallbackContext context);
+        void OnDamagePlayer(InputAction.CallbackContext context);
     }
 }
