@@ -29,7 +29,8 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
 	public bool castSpellPressed;
 
-	public bool damagePlayerPressed;
+	public bool changePlayerHealthPressed;
+	public bool changePlayerMaxHealthPressed;
 
 	[Header("MOVEMENTS")]
     public bool movementPressed;
@@ -152,7 +153,8 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
 			castSpellPressed = input.DebugKeys.CastSpell.triggered;
 
-            damagePlayerPressed = input.DebugKeys.DamagePlayer.triggered;
+            changePlayerHealthPressed = input.DebugKeys.ChangePlayerHealth.triggered;
+            changePlayerMaxHealthPressed = input.DebugKeys.ChangePlayerMaxHealth.triggered;
 		}
 	}
 

@@ -446,9 +446,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DamagePlayer",
+                    "name": "ChangePlayerHealth",
                     "type": "Button",
                     "id": "c02f86f5-c2f8-4719-a381-6498654748c8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangePlayerMaxHealth",
+                    "type": "Button",
+                    "id": "b4c125c5-f2f1-49fb-a6b8-f922da63946a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -562,7 +571,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DamagePlayer",
+                    "action": "ChangePlayerHealth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd0e9878-9c95-4c44-990a-5cb478aaa80a",
+                    "path": "<Keyboard>/contextMenu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePlayerMaxHealth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
