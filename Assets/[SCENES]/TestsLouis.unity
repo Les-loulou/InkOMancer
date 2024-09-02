@@ -5978,7 +5978,8 @@ MonoBehaviour:
   leftIslandPressed: 0
   damageEnemyPressed: 0
   castSpellPressed: 0
-  damagePlayerPressed: 0
+  changePlayerHealthPressed: 0
+  changePlayerMaxHealthPressed: 0
   movementPressed: 0
   sprintPressed: 0
   movementClicked: 0
@@ -7415,7 +7416,11 @@ MonoBehaviour:
   currentHealthDisplay: {fileID: 341137307}
   maxHealthDisplay: {fileID: 1262051136}
   maxHealth: 1000
+  previousMaxHealth: 0
+  targetMaxHealth: 0
   currentHealth: 0
+  targetHealth: 0
+  healthPercentage: 0
   healthSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -7440,8 +7445,34 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  smoothTime: 0.5
-  debugHealth: -50
+  maxHealthSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0
+      inSlope: 3.1132076
+      outSlope: 3.1132076
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.05
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  smoothTimeHealth: 0.5
+  smoothTimeMaxHealth: 0.5
+  debugHealthChange: -50
+  debugMaxHealthChange: 50
 --- !u!1 &1690639312
 GameObject:
   m_ObjectHideFlags: 0
@@ -7629,7 +7660,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1557341349}
   m_HandleRect: {fileID: 0}

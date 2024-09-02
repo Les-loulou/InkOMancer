@@ -15,22 +15,31 @@ public class SC_LC_PlayerHealth : MonoBehaviour
 
 	[Space]
     public float maxHealth;
+    public float previousMaxHealth;
+    public float targetMaxHealth;
 	[Space]
 	public float currentHealth;
 	float previousHealth;
-	float targetHealth;
+	public float targetHealth;
+	public float healthPercentage;
 	[Space]
 	public AnimationCurve healthSpeedCurve;
+	public AnimationCurve maxHealthSpeedCurve;
     float elapsedTime;
-	public float smoothTime;
+	public float smoothTimeHealth;
+	public float smoothTimeMaxHealth;
 
 	[Space]
-	public float debugHealth;
+	public float debugHealthChange;
+	public float debugMaxHealthChange;
 
 	void Awake()
 	{
-		healthBar.maxValue = maxHealth; //Sets the maximum value of the slider to the maxHealth variable
-		healthBar.value = maxHealth; //Sets the value of the slider to the maxHealth variable
+		healthBar.maxValue = 100f; //Sets the maximum value of the slider to the maxHealth variable
+		healthBar.value = healthPercentage; //Sets the value of the slider to the maxHealth variable
+
+		previousMaxHealth = maxHealth;
+		targetMaxHealth = maxHealth;
 
 		currentHealth = maxHealth; //Sets the current health of the player to the maxHealth variable
 		previousHealth = currentHealth; //Sets the previous health of the player to the currentHealth variable
@@ -45,29 +54,43 @@ public class SC_LC_PlayerHealth : MonoBehaviour
 	void Update()
     {
 		elapsedTime += Time.deltaTime; //Keeps track of the time elapsed
-		float normalizedTime = elapsedTime / smoothTime; //Divides the elapsed time by the smoothTime variable
-		float curveValue = healthSpeedCurve.Evaluate(normalizedTime); //Keeps track of the current value of the animation curve based on the normalizedTime variable
+		float normalizedTime = elapsedTime / smoothTimeHealth; //Divides the elapsed time by the smoothTime variable
+		float healthCurve = healthSpeedCurve.Evaluate(normalizedTime);
+		float maxHealthCurve = maxHealthSpeedCurve.Evaluate(normalizedTime);
 
+		maxHealth = Mathf.Clamp(maxHealth, 0f, Mathf.Infinity); //Clamps the current health of the player between 0 and the maxHealth value
+		targetMaxHealth = Mathf.Clamp(targetMaxHealth, 0f, Mathf.Infinity);
 		currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); //Clamps the current health of the player between 0 and the maxHealth value
 		targetHealth = Mathf.Clamp(targetHealth, 0f, maxHealth); //Clamps the target health of the player between 0 and the maxHealth value
 
 		currentHealthDisplay.text = currentHealth.ToString("F0"); //Displays current health value of the player on the health bar
 		maxHealthDisplay.text = maxHealth.ToString("F0"); //Displays maximum health value of the player on the health bar
 
-		currentHealth = Mathf.Lerp(previousHealth, targetHealth, curveValue); //Smoothly moves the current health value based on the animation curve
+		healthPercentage = (targetHealth / maxHealth) * 100f; //Sets a percentage based on the target health and the max health values
+		currentHealth = Mathf.Lerp(previousHealth, targetHealth, healthCurve); //Smoothly moves the current health value based on the animation curve
+		maxHealth = Mathf.Lerp(previousMaxHealth, targetMaxHealth, maxHealthCurve);
 
-		healthBar.value = currentHealth; //Moves the bar based on the current health value
+		healthBar.value = currentHealth / maxHealth * 100f; //Moves the bar based on the current health value
 
 		#region DEBUG
-		if (player.inputs.damagePlayerPressed == true) //DEBUG
-			Inflict(debugHealth);
+		if (player.inputs.changePlayerHealthPressed == true)
+			ModifyHealth(debugHealthChange);
+		if (player.inputs.changePlayerMaxHealthPressed == true)
+			ModifyMaxHealth(debugMaxHealthChange);
 		#endregion
 	}
 
-	public void Inflict(float _amount)
+	public void ModifyHealth(float _amount)
 	{
 		elapsedTime = 0f; //Resets the elapsed time variable
 		previousHealth = currentHealth; //Sets the previous health value to the currentHealth variable
 		targetHealth += _amount; //Adds the passed amount parameter to the targetHealth variable
+	}
+
+	public void ModifyMaxHealth(float _amount)
+	{
+		elapsedTime = 0f; //Resets the elapsed time variable
+		previousMaxHealth = maxHealth;
+		targetMaxHealth += _amount;
 	}
 }

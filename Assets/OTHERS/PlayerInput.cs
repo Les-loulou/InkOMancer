@@ -469,9 +469,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DamagePlayer"",
+                    ""name"": ""ChangePlayerHealth"",
                     ""type"": ""Button"",
                     ""id"": ""c02f86f5-c2f8-4719-a381-6498654748c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePlayerMaxHealth"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4c125c5-f2f1-49fb-a6b8-f922da63946a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -585,7 +594,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DamagePlayer"",
+                    ""action"": ""ChangePlayerHealth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd0e9878-9c95-4c44-990a-5cb478aaa80a"",
+                    ""path"": ""<Keyboard>/contextMenu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePlayerMaxHealth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -619,7 +639,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_DebugKeys_DamageEnemy = m_DebugKeys.FindAction("DamageEnemy", throwIfNotFound: true);
         m_DebugKeys_CastSpell = m_DebugKeys.FindAction("CastSpell", throwIfNotFound: true);
         m_DebugKeys_RerollIslands = m_DebugKeys.FindAction("RerollIslands", throwIfNotFound: true);
-        m_DebugKeys_DamagePlayer = m_DebugKeys.FindAction("DamagePlayer", throwIfNotFound: true);
+        m_DebugKeys_ChangePlayerHealth = m_DebugKeys.FindAction("ChangePlayerHealth", throwIfNotFound: true);
+        m_DebugKeys_ChangePlayerMaxHealth = m_DebugKeys.FindAction("ChangePlayerMaxHealth", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -853,7 +874,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_DebugKeys_DamageEnemy;
     private readonly InputAction m_DebugKeys_CastSpell;
     private readonly InputAction m_DebugKeys_RerollIslands;
-    private readonly InputAction m_DebugKeys_DamagePlayer;
+    private readonly InputAction m_DebugKeys_ChangePlayerHealth;
+    private readonly InputAction m_DebugKeys_ChangePlayerMaxHealth;
     public struct DebugKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -867,7 +889,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @DamageEnemy => m_Wrapper.m_DebugKeys_DamageEnemy;
         public InputAction @CastSpell => m_Wrapper.m_DebugKeys_CastSpell;
         public InputAction @RerollIslands => m_Wrapper.m_DebugKeys_RerollIslands;
-        public InputAction @DamagePlayer => m_Wrapper.m_DebugKeys_DamagePlayer;
+        public InputAction @ChangePlayerHealth => m_Wrapper.m_DebugKeys_ChangePlayerHealth;
+        public InputAction @ChangePlayerMaxHealth => m_Wrapper.m_DebugKeys_ChangePlayerMaxHealth;
         public InputActionMap Get() { return m_Wrapper.m_DebugKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -904,9 +927,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RerollIslands.started += instance.OnRerollIslands;
             @RerollIslands.performed += instance.OnRerollIslands;
             @RerollIslands.canceled += instance.OnRerollIslands;
-            @DamagePlayer.started += instance.OnDamagePlayer;
-            @DamagePlayer.performed += instance.OnDamagePlayer;
-            @DamagePlayer.canceled += instance.OnDamagePlayer;
+            @ChangePlayerHealth.started += instance.OnChangePlayerHealth;
+            @ChangePlayerHealth.performed += instance.OnChangePlayerHealth;
+            @ChangePlayerHealth.canceled += instance.OnChangePlayerHealth;
+            @ChangePlayerMaxHealth.started += instance.OnChangePlayerMaxHealth;
+            @ChangePlayerMaxHealth.performed += instance.OnChangePlayerMaxHealth;
+            @ChangePlayerMaxHealth.canceled += instance.OnChangePlayerMaxHealth;
         }
 
         private void UnregisterCallbacks(IDebugKeysActions instance)
@@ -938,9 +964,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RerollIslands.started -= instance.OnRerollIslands;
             @RerollIslands.performed -= instance.OnRerollIslands;
             @RerollIslands.canceled -= instance.OnRerollIslands;
-            @DamagePlayer.started -= instance.OnDamagePlayer;
-            @DamagePlayer.performed -= instance.OnDamagePlayer;
-            @DamagePlayer.canceled -= instance.OnDamagePlayer;
+            @ChangePlayerHealth.started -= instance.OnChangePlayerHealth;
+            @ChangePlayerHealth.performed -= instance.OnChangePlayerHealth;
+            @ChangePlayerHealth.canceled -= instance.OnChangePlayerHealth;
+            @ChangePlayerMaxHealth.started -= instance.OnChangePlayerMaxHealth;
+            @ChangePlayerMaxHealth.performed -= instance.OnChangePlayerMaxHealth;
+            @ChangePlayerMaxHealth.canceled -= instance.OnChangePlayerMaxHealth;
         }
 
         public void RemoveCallbacks(IDebugKeysActions instance)
@@ -985,6 +1014,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDamageEnemy(InputAction.CallbackContext context);
         void OnCastSpell(InputAction.CallbackContext context);
         void OnRerollIslands(InputAction.CallbackContext context);
-        void OnDamagePlayer(InputAction.CallbackContext context);
+        void OnChangePlayerHealth(InputAction.CallbackContext context);
+        void OnChangePlayerMaxHealth(InputAction.CallbackContext context);
     }
 }
