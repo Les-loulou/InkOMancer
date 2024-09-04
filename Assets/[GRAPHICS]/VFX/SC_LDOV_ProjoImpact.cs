@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -11,7 +12,6 @@ public class SC_LDOV_ProjoImpact : MonoBehaviour
     void Start()
     {
         fx = GetComponent<VisualEffect>();
-        fx.SetVector3("Space", transform.position);
     }
 
     // Update is called once per frame
@@ -26,11 +26,21 @@ public class SC_LDOV_ProjoImpact : MonoBehaviour
         {
             fx.SetBool("IsAlive", false);
             fx.SendEvent("OnHit");
+            fx.SetVector3("HitPos", transform.position);
             gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             print("shoot");
 
             other.gameObject.GetComponent<Animator>().SetTrigger("Damage");
+
+            StartCoroutine(WaitBeforeDie()); 
+
         }
+    }
+
+    private IEnumerator WaitBeforeDie()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 
 }

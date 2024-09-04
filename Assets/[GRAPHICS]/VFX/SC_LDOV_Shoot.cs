@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SC_LDOV_Shoot : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class SC_LDOV_Shoot : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)) 
         {
             GameObject shooted = Instantiate(projo, transform.position, Quaternion.identity);
+
+            VisualEffect fx = shooted.GetComponent<VisualEffect>();
+            fx.SetVector3("Space", transform.position);
 
             rb = shooted.GetComponent<Rigidbody>();
             rb.AddForce(shooted.transform.forward*speed, ForceMode.Impulse);
