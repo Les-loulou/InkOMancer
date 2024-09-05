@@ -200,7 +200,10 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0.9, z: 0}
+        m_Name: Space
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -215,11 +218,11 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 2, g: 2, b: 2, a: 1}
+          key0: {r: 0.0005094687, g: 0.018627452, b: 0, a: 1}
           key1: {r: 0.050980393, g: 0.012324327, b: 0, a: 1}
           key2: {r: 0.0005094687, g: 0.018627452, b: 0, a: 0.8}
           key3: {r: 0.005001545, g: 2, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 1.7207953, b: 0.067779, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
@@ -248,7 +251,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: IsAlive
+        m_Overridden: 1
 --- !u!4 &653156
 Transform:
   m_ObjectHideFlags: 0
@@ -4548,9 +4554,9 @@ Transform:
   m_GameObject: {fileID: 1590695641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

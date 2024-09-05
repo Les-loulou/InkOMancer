@@ -7,6 +7,7 @@ public class SC_LDOV_ProjoImpact : MonoBehaviour
     public Transform targetPos;
     private VisualEffect fx;
     public string targetTag;
+    public float delayBeforeDie = 2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,7 +40,7 @@ public class SC_LDOV_ProjoImpact : MonoBehaviour
 
     private IEnumerator WaitBeforeDie()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(delayBeforeDie);
         Destroy(gameObject);
     }
 

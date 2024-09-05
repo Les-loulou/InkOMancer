@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5463880624099264520}
   - component: {fileID: 1843547691310454904}
   m_Layer: 0
-  m_Name: Ronce
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
