@@ -217,3 +217,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {fileID: 0}
   targetTag: Finish
+  delayBeforeDie: 2

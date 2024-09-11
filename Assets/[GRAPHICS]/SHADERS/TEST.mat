@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3101248770833498884
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TEST
+  m_Shader: {fileID: -6465566751694194690, guid: 854fd4253776420418f56c7b6c2c75df, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2DLOD_15691f4d0ce24ad6a78171f54c398160_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c08c021183f409348b4b4383100cba3c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_47ed7fe852234c318a6471c3e6938e27_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 15f0d74cb5cb92947ad0fa372d03be21, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4b77df8970814ea98f6f7b0df8bb59c9_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c08c021183f409348b4b4383100cba3c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0.12
+    - _ColorRep: 2.5
+    - _FresnelPower: 0.96
+    - _Lerper: 0.75
+    - _NoiseSize: 50
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _WoobleSize: 1.1
+    - _crack: 0.5
+    m_Colors:
+    - _Alpha: {r: 0.4, g: 1, b: 0, a: 0}
+    - _Color: {r: 1.9415398, g: 0, b: 4, a: 0}
+    - _Color01: {r: 0.13425821, g: 1.1931943, b: 1.4980394, a: 0}
+    - _Color02: {r: 0, g: 0.5890689, b: 1, a: 0}
+    - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0.5, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 4, b: 0, a: 0}
+    - _TimeSpeed: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

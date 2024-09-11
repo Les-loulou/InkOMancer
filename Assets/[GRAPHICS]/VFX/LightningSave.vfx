@@ -36,34 +36,10 @@ MonoBehaviour:
     - model: {fileID: 8926484042661618337}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661618339}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661618343}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661618358}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618361}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618368}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618374}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618566}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661618380}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618391}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619013}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618404}
@@ -131,34 +107,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661618569}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661618571}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661618575}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618577}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661618592}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618595}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618602}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618608}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618614}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661618617}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618649}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618659}
@@ -220,31 +175,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661618775}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661618777}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661618781}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618796}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618861}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618805}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618807}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618818}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618828}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661618831}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661618838}
@@ -273,40 +210,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661619027}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661619029}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661619033}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619048}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619051}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619057}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619134}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661619063}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661619084}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619094}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619097}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661619104}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661619106}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661619112}
@@ -434,7 +344,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: LightningProjectile
+  m_Name: LightningSave
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -547,6 +457,7 @@ MonoBehaviour:
   - {fileID: 8926484042661619384}
   - {fileID: 8926484042661619387}
   - {fileID: 8926484042661619413}
+  - {fileID: 8926484042661619439}
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
@@ -649,6 +560,22 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: DuoRune
+    path: DuoRune
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Int
+    realType: Int32
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 0
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   m_ImportDependencies: []
   m_GraphVersion: 18
   m_ResourceVersion: 1
@@ -660,7 +587,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightningProjectile
+  m_Name: LightningSave
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -10147,7 +10074,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: Count
@@ -16188,7 +16115,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: Count
@@ -35936,3 +35863,75 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661619236}
+--- !u!114 &8926484042661619439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_InputSlots: []
+  m_OutputSlots:
+  - {fileID: 8926484042661619440}
+  m_ExposedName: DuoRune
+  m_Exposed: 1
+  m_Order: 6
+  m_Category: 
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_EnumValues: []
+  m_ValueFilter: 0
+  m_Tooltip: 
+  m_Nodes: []
+--- !u!114 &8926484042661619440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d246e354feb93041a837a9ef59437cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661619440}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661619439}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 0
+    m_Space: -1
+  m_Property:
+    name: o
+    m_serializedType:
+      m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+  m_Direction: 1
+  m_LinkedSlots: []
