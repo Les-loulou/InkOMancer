@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808733c9bb39ad4bacfe65dcec0437a, type: 3}
   m_Name: SO_Rune_MultipleAttack
   m_EditorClassIdentifier: 
-  runeName: caca
+  runeName: MultipleAttack
   runeScript: {fileID: 6902595766616645182, guid: 581bc9ad54f9b334899cd9c42b78bf94, type: 3}
   currentLevel: 0
   inkAmount:
   - 100
   costInk:
-  - 12
+  - 6
   damage:
   - 100
   remainingInk: 100
-  actualInkCost: 12
+  actualInkCost: 6
   actualDamage: 100

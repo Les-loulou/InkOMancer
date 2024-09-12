@@ -28,7 +28,7 @@ public class SC_LQ_SpellGlobal : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        SetTarget();
+        //SetTarget();
     }
 
     private void Start()
@@ -52,23 +52,23 @@ public class SC_LQ_SpellGlobal : MonoBehaviour
         this.target = target;
     }
 
-    private void SetTarget()
-    {
-        //Found an target
-        if (target == null)
-        {
-            Collider[] enemy = Physics.OverlapSphere(transform.position, 100f);
-
-            foreach (Collider collider in enemy)
-            {
-                if (collider.gameObject.GetComponent<SC_LQ_EnemyGlobal>())
-                {
-                    target = collider.transform;
-                    break;
-                }
-            }
-        }
-    }
+    //private void SetTarget()
+    //{
+    //    //Found an target
+    //    if (target == null)
+    //    {
+    //        Collider[] enemy = Physics.OverlapSphere(transform.position, 100f);
+    //
+    //        foreach (Collider collider in enemy)
+    //        {
+    //            if (collider.gameObject.GetComponent<SC_LQ_EnemyGlobal>())
+    //            {
+    //                target = collider.transform;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
 
 
 

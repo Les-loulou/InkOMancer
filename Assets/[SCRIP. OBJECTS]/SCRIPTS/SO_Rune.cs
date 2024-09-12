@@ -40,15 +40,4 @@ public class SO_Rune : ScriptableObject
         remainingInk -= actualInkCost;
     }
 
-    //public void AddRune(GameObject spell)
-    //{
-    //    //MonoBehaviour mono = new MonoBehaviour(); ;
-    //    //
-    //    //SC_LQ_SpellRune testrune = new SC_LQ_SpellRune();
-    //    //testrune = runeScript.GetComponent<SC_LQ_SpellRune>(); 
-    //
-    //    SC_LQ_SpellRune rune = spell.AddComponent<SC_LQ_SpellRune>() ;
-    //    rune = runeScript.GetComponent<SC_LQ_SpellRune>();
-    //}
-
 }

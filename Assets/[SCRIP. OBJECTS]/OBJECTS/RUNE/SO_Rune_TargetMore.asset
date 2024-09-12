@@ -18,9 +18,9 @@ MonoBehaviour:
   inkAmount:
   - 100
   costInk:
-  - 20
+  - 5
   damage:
   - 100
-  remainingInk: 15
-  actualInkCost: 1
+  remainingInk: 80
+  actualInkCost: 5
   actualDamage: 100

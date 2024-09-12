@@ -32,7 +32,7 @@ public class SC_LQ_SpellCast : MonoBehaviour
 
     }
 
-    public void LaunchSpell()
+    public GameObject LaunchSpell()
     {
         GameObject currentSpell = Instantiate(spell, transform.position, transform.rotation);//Instantiate spell Shape
 
@@ -43,6 +43,8 @@ public class SC_LQ_SpellCast : MonoBehaviour
             Component compo = currentSpell.AddComponent(rune.runeScript.GetComponent<SC_LQ_SpellRune>().GetType());
             compo = rune.runeScript.GetComponent<SC_LQ_SpellRune>();
         }
+
+        return currentSpell;
     }
 
     public void TouchEnemy()
@@ -52,11 +54,10 @@ public class SC_LQ_SpellCast : MonoBehaviour
 
     public void ChangeRune(SO_Rune oldRune)
     {
-        print("changerune");
+        runes[0].ResetStats();
         runesActifs.SetValue(runes[0], ArrayUtility.IndexOf(runesActifs, oldRune));
         runes.RemoveAt(0);
         runes.Add(oldRune);
-        oldRune.ResetStats();
 
     }
 
@@ -64,18 +65,15 @@ public class SC_LQ_SpellCast : MonoBehaviour
     {
         //To replace by Click on Enemy
         //CTRL + A
-        if (SC_LC_PlayerGlobal.instance.inputs.castSpellPressed == true)
-        {
-            LaunchSpell();
-        }
+
 
         foreach (SO_Rune rune in runesActifs)
         {
             if (rune.remainingInk <= 0)
             {
                 ChangeRune(rune);
+                break;
             }
-            break;
         }
 
     }

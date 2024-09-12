@@ -11,10 +11,11 @@ public class SC_LC_PlayerMovements : MonoBehaviour
     [Header("MOVEMENT")]
     [SerializeField] GameObject moveTarget;
 	[SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask enemyLayer;
 
-	[Space]
+    [Space]
 	public float currentSpeed;
-    [SerializeField] float moveSpeed;
+    public float moveSpeed;
     [SerializeField] float sprintMultiplier;
 
     float smoothVelocity;
@@ -34,6 +35,8 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         player = SC_LC_PlayerGlobal.instance;
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
+
+        moveSpeed = player.playerStats.movementSpeed;
     }
 
     void Update()
@@ -41,7 +44,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         PlayerMovements();
         PlayerMouseMovements();
 
-		PlayerSpeed();
+		//PlayerSpeed(1);
     }
 
     void PlayerMovements()
@@ -73,19 +76,21 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         agent.Move(playerMovements * currentSpeed * Time.deltaTime); //Moves the player's agent according to the movement variable, multiplied by the speed variable, scaled with deltaTime
     }
 
-    void PlayerSpeed()
+    public void PlayerSpeed(float modifier)
     {
         if (player.inputs.sprintPressed == true) //If the player is sprinting
         {
-            currentSpeed = moveSpeed * sprintMultiplier; //Sets the player's movement speed by multiplying the current movement speed with the sprint speed multiplier
-            currentRotationSpeed = moveRotationSpeed * sprintMultiplier; //Sets the player's rotation speed by multiplying the current rotation speed with the sprint multiplier
+            currentSpeed = moveSpeed * sprintMultiplier * modifier; //Sets the player's movement speed by multiplying the current movement speed with the sprint speed multiplier
+            currentRotationSpeed = moveRotationSpeed * sprintMultiplier * modifier; //Sets the player's rotation speed by multiplying the current rotation speed with the sprint multiplier
 		}
 
         else //If the player is not sprinting
         {
-            currentSpeed = moveSpeed; //Sets the player's current speed to the standard movement speed
-            currentRotationSpeed = moveRotationSpeed; //Sets the player's current rotation speed to the standard rotation speed
+            currentSpeed = moveSpeed * modifier; //Sets the player's current speed to the standard movement speed
+            currentRotationSpeed = moveRotationSpeed * modifier; //Sets the player's current rotation speed to the standard rotation speed
 		}
+
+        agent.speed = currentSpeed;
 
         //if (player.controls.isAttacking == true)
         //{
@@ -93,6 +98,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         //    currentRotationSpeed = attackRotationSpeed;
         //}
     }
+
 
     void PlayerMouseMovements()
     {
@@ -106,9 +112,17 @@ public class SC_LC_PlayerMovements : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, groundLayer))
             {
+
                 moveTarget.transform.position = hitInfo.point;
                 agent.SetDestination(moveTarget.transform.position);
 			}
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfoEnemy, Mathf.Infinity, enemyLayer))
+            {
+                print("enemy");
+                moveTarget.transform.position = hitInfoEnemy.point;
+                agent.SetDestination(moveTarget.transform.position);
+            }
         }
     }
 }

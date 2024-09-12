@@ -4,11 +4,11 @@ using UnityEngine;
 public class SC_LQ_Rune_MultipleAttack : SC_LQ_SpellRune
 {
 
-     int numberAttack = 3;
+     int numberAttack = 2;
 
     public override void Awake()
     {
-        runeName = "caca";
+        runeName = "MultipleAttack";
         base.Awake();
     }
 
@@ -30,11 +30,11 @@ public class SC_LQ_Rune_MultipleAttack : SC_LQ_SpellRune
 
         for (int i = 1; i < numberAttack; i++)
         {
+            yield return new WaitForSeconds(0.2f / numberAttack);
             GameObject newGo = Instantiate(gameObject, SC_LC_PlayerGlobal.instance.transform.position, SC_LC_PlayerGlobal.instance.transform.rotation);
             Destroy(newGo.GetComponent<SC_LQ_Rune_MultipleAttack>());
 
             newGo.GetComponent<SC_LQ_SpellGlobal>().SetTarget(spell.target);
-            yield return new WaitForSeconds(0.2f / numberAttack);
         }
     }
 

@@ -32,10 +32,10 @@ public class SC_LQ_SpellRune : MonoBehaviour
     {
         foreach (SO_Rune rune in SC_LC_PlayerGlobal.instance.GetComponent<SC_LQ_SpellCast>().runesScriptable)
         {
-            //print(runeName);
             if (rune.runeName == runeName)
             {
                 runeSO = rune;
+                break;
             }
         }
     }
