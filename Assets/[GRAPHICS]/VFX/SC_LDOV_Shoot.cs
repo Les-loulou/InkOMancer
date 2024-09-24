@@ -26,7 +26,7 @@ public class SC_LDOV_Shoot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isFusion)
+            if (!isFusion)
             {
                 GameObject shoot = Instantiate(allprojo[firstRuneIndex], transform.position, Quaternion.identity);
 
@@ -35,7 +35,8 @@ public class SC_LDOV_Shoot : MonoBehaviour
                 fx.SetInt("DuoRune", firstRuneIndex);
 
                 rb = shoot.GetComponent<Rigidbody>();
-                rb.AddForce(shoot.transform.forward * speed, ForceMode.Impulse);
+                rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+                shoot.transform.rotation = transform.rotation;
             }
             else
             {
@@ -51,10 +52,12 @@ public class SC_LDOV_Shoot : MonoBehaviour
                 fx2.SetInt("DuoRune", firstRuneIndex);
 
                 rb = shootOne.GetComponent<Rigidbody>();
-                rb.AddForce(shootOne.transform.forward * speed, ForceMode.Impulse);
+                rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+                shootOne.transform.rotation = transform.rotation;
 
                 rb = shootTwo.GetComponent<Rigidbody>();
-                rb.AddForce(shootTwo.transform.forward * speed, ForceMode.Impulse);
+                rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+                shootTwo.transform.rotation = transform.rotation;
 
                 //shooted.GetComponent<SC_LDOV_ProjoImpact>().targetPos = ennemiePos;
             }
