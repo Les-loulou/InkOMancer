@@ -9,29 +9,46 @@ public class SC_LQ_SpellRune : MonoBehaviour
 
     public SO_Rune runeSO;
 
-    public float currentInk;
-    public float costInk;
-    public float damage;
+    [HideInInspector] public string runeName;
+
 
     //Faire s'abonner la fonction Effect quand on veut déclencher les effets ???
     public virtual void Effect()
     {
 
+
         //Faire spawn une créature amie
         //Faire bruler la cible (Add Component)
     }
 
+    public System.Action OnTouchEnemy;
     public virtual void TouchEnemy(GameObject enemy)
     {
         //Call Touch Enemy in my parents
         SC_LC_PlayerGlobal.instance.GetComponent<SC_LQ_SpellCast>().TouchEnemy();
     }
 
+    public void FoundRune()
+    {
+        foreach (SO_Rune rune in SC_LC_PlayerGlobal.instance.GetComponent<SC_LQ_SpellCast>().runesScriptable)
+        {
+            if (rune.runeName == runeName)
+            {
+                runeSO = rune;
+                break;
+            }
+        }
+    }
+
     public virtual void Awake()
     {
+        FoundRune();
+
         spell = transform.root.GetComponent<SC_LQ_SpellGlobal>();
         spell.MyCollisionEnter += OnCollisionEnter;
         spell.MyTriggerEnter += OnTriggerEnter;
+
+        runeSO.CostRune();
 
     }
 

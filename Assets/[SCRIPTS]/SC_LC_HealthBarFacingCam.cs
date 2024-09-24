@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SC_LC_HealthBarFacingCam : MonoBehaviour
 {
-	void Update()
+	void FixedUpdate()
 	{
 		transform.LookAt(Camera.main.transform.position);
 	}

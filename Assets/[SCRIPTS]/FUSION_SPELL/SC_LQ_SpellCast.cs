@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class SC_LQ_SpellCast : MonoBehaviour
 {
@@ -12,17 +8,18 @@ public class SC_LQ_SpellCast : MonoBehaviour
 
     public GameObject spell;
 
-    public List<SO_Rune> runesScriptable ;
-    public List<SC_LQ_SpellRune> runes;
-    public SC_LQ_SpellRune[] runesActifs = new SC_LQ_SpellRune[2];
+    public List<SO_Rune> runesScriptable;
+    public List<SO_Rune> runes;
+    public SO_Rune[] runesActifs = new SO_Rune[2];
 
 
     private void Start()
     {
-        
+
         foreach (SO_Rune soRune in runesScriptable)
         {
-            runes.Add(soRune.runeScript.GetComponent<SC_LQ_SpellRune>());
+            runes.Add(soRune);
+            soRune.ResetStats();
         }
 
         //Active Runes
@@ -35,15 +32,19 @@ public class SC_LQ_SpellCast : MonoBehaviour
 
     }
 
-    public void LaunchSpell()
+    public GameObject LaunchSpell()
     {
         GameObject currentSpell = Instantiate(spell, transform.position, transform.rotation);//Instantiate spell Shape
 
-        foreach (SC_LQ_SpellRune rune in runesActifs)
+        foreach (SO_Rune rune in runesActifs)
         {
-            currentSpell.AddComponent(rune.GetType());
+            //rune.AddRune(currentSpell);
+            //print()
+            Component compo = currentSpell.AddComponent(rune.runeScript.GetComponent<SC_LQ_SpellRune>().GetType());
+            compo = rune.runeScript.GetComponent<SC_LQ_SpellRune>();
         }
 
+        return currentSpell;
     }
 
     public void TouchEnemy()
@@ -51,11 +52,12 @@ public class SC_LQ_SpellCast : MonoBehaviour
 
     }
 
-    public void ChangeRune(SC_LQ_SpellRune oldRune)
+    public void ChangeRune(SO_Rune oldRune)
     {
-        //runesActifs.SetValue(runes[0], ArrayUtility.IndexOf(runesActifs, oldRune));
-        //runes.RemoveAt(0);
-        //runes.Add(oldRune);
+        runes[0].ResetStats();
+        runesActifs.SetValue(runes[0], ArrayUtility.IndexOf(runesActifs, oldRune));
+        runes.RemoveAt(0);
+        runes.Add(oldRune);
 
     }
 
@@ -63,18 +65,15 @@ public class SC_LQ_SpellCast : MonoBehaviour
     {
         //To replace by Click on Enemy
         //CTRL + A
-        if (SC_LC_PlayerGlobal.instance.inputs.castSpellPressed == true)
-        {
-            LaunchSpell();
-        }
 
-        foreach (SC_LQ_SpellRune rune in runesActifs)
+
+        foreach (SO_Rune rune in runesActifs)
         {
-            //if(rune.currentInk <=0)
-            //{
-            //    ChangeRune(rune);
-            //}
-            //break;
+            if (rune.remainingInk <= 0)
+            {
+                ChangeRune(rune);
+                break;
+            }
         }
 
     }

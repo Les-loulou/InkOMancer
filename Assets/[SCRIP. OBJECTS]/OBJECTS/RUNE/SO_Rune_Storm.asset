@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808733c9bb39ad4bacfe65dcec0437a, type: 3}
   m_Name: SO_Rune_Storm
   m_EditorClassIdentifier: 
+  runeName: Storm
   runeScript: {fileID: 3446188648973768528, guid: 2fe999fa5d0dbda43badc16963d13348, type: 3}
+  currentLevel: 0
+  inkAmount:
+  - 100
+  costInk:
+  - 33
+  damage:
+  - 100
+  remainingInk: 11
+  actualInkCost: 1
+  actualDamage: 100

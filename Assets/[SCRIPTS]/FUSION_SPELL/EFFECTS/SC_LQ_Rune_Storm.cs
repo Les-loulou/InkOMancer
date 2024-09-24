@@ -2,12 +2,29 @@ using UnityEngine;
 
 public class SC_LQ_Rune_Storm : SC_LQ_SpellRune
 {
-    private void Awake()
+    public override void Awake()
     {
+        runeName = "Storm";
         base.Awake();
+    }
 
-        currentInk = 10;
-        costInk = 1;
-        damage = 1;
+    public override void Effect()
+    {
+        base.Effect();
+
+       GameObject myPrefab = Resources.Load<GameObject>("StormGO");
+
+        // Step 3: Check if the prefab was loaded successfully
+        if (myPrefab != null)
+        {
+            // Step 4: Instantiate the prefab
+            Instantiate(myPrefab, transform.position, transform.rotation);
+        }
+    }
+
+    public override void TouchEnemy(GameObject enemy)
+    {
+        base.TouchEnemy(enemy);
+        Effect();
     }
 }

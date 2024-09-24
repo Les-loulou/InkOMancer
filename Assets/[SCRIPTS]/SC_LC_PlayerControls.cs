@@ -8,31 +8,33 @@ public class SC_LC_PlayerControls : MonoBehaviour
     [HideInInspector] public PlayerInput input;
 
     [HideInInspector] public Vector2 direction;
+    [HideInInspector] public Vector2 focusDirection;
+
 
     //public bool isDamaging = false;
     //public bool isAttacking = false;
 
     [Header("   ---= INPUT CHECKERS =---")]
-	[Header("DEBUG")]
-	public bool debugPressed;
+    [Header("DEBUG")]
+    public bool debugPressed;
 
     [Space]
-	public bool createIslandPressed;
-	public bool rerollIslandsPressed;
+    public bool createIslandPressed;
+    public bool rerollIslandsPressed;
 
-	public bool upIslandPressed;
-	public bool rightIslandPressed;
-	public bool downIslandPressed;
-	public bool leftIslandPressed;
+    public bool upIslandPressed;
+    public bool rightIslandPressed;
+    public bool downIslandPressed;
+    public bool leftIslandPressed;
 
-	public bool damageEnemyPressed;
+    public bool damageEnemyPressed;
 
-	public bool castSpellPressed;
+    public bool castSpellPressed;
 
-	public bool changePlayerHealthPressed;
-	public bool changePlayerMaxHealthPressed;
+    public bool changePlayerHealthPressed;
+    public bool changePlayerMaxHealthPressed;
 
-	[Header("MOVEMENTS")]
+    [Header("MOVEMENTS")]
     public bool movementPressed;
     public bool sprintPressed;
     public bool movementClicked;
@@ -42,6 +44,7 @@ public class SC_LC_PlayerControls : MonoBehaviour
     public bool focusPressed;
     public bool rightRotatePressed;
     public bool leftRotatePressed;
+    public bool changeFocusPressed;
 
     [Space]
     [Header("PLAYER ACTIONS")]
@@ -88,12 +91,21 @@ public class SC_LC_PlayerControls : MonoBehaviour
         input.CharacterControls.Movement.performed += ctx =>
         {
             direction = ctx.ReadValue<Vector2>();
-            movementPressed = true;
+            //movementPressed = true;
         };
         input.CharacterControls.Movement.canceled += ctx =>
         {
             direction = Vector2.zero;
-            movementPressed = false;
+            //movementPressed = false;
+        };
+
+        input.CharacterControls.ChangeFocus.performed += ctx =>
+        {
+            focusDirection = ctx.ReadValue<Vector2>();
+        };
+        input.CharacterControls.ChangeFocus.canceled += ctx =>
+        {
+            focusDirection = Vector2.zero;
         };
 
         //SPRINT
@@ -104,11 +116,11 @@ public class SC_LC_PlayerControls : MonoBehaviour
         input.CharacterControls.CameraFocus.performed += ctx => focusPressed = ctx.ReadValueAsButton();
         input.CharacterControls.CameraFocus.canceled += ctx => focusPressed = ctx.ReadValueAsButton();
 
-		//DEBUG
-		input.DebugKeys.Debug.performed += ctx => debugPressed = ctx.ReadValueAsButton();
-		input.DebugKeys.Debug.canceled += ctx => debugPressed = ctx.ReadValueAsButton();
-	}
-    
+        //DEBUG
+        input.DebugKeys.Debug.performed += ctx => debugPressed = ctx.ReadValueAsButton();
+        input.DebugKeys.Debug.canceled += ctx => debugPressed = ctx.ReadValueAsButton();
+    }
+
     void Start()
     {
         //pauseState = SC_GamePauseState.instance;
@@ -116,27 +128,32 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
     void Update()
     {
+
         //PAUSE
         pausePressed = input.Interface.Pause.triggered;
 
-		//if (pauseState.isGamePaused == false)
-		//{
-		    //MOUSE MOVEMENTS
-		    movementClicked = input.CharacterControls.MovementsMouse.triggered;
+        //if (pauseState.isGamePaused == false)
+        //{
+        //MOUSE MOVEMENTS
+        movementClicked = input.CharacterControls.MovementsMouse.triggered;
 
-            //INTERACT
-            interactPressed = input.CharacterControls.Interact.triggered;
+        //INTERACT
+        interactPressed = input.CharacterControls.Interact.triggered;
 
-            //CAMERA CONTROLS
-            rightRotatePressed = input.CharacterControls.CameraRotateRight.triggered;
-            leftRotatePressed = input.CharacterControls.CameraRotateLeft.triggered;
+        //CAMERA CONTROLS
+        rightRotatePressed = input.CharacterControls.CameraRotateRight.triggered;
+        leftRotatePressed = input.CharacterControls.CameraRotateLeft.triggered;
+        changeFocusPressed = input.CharacterControls.ChangeFocus.triggered;
 
-            //ATTACK
-            attackPressed = input.CharacterControls.Attack.triggered;
+        //ATTACK
+        attackPressed = input.CharacterControls.Attack.triggered;
 
-            //INVENTORY
-            inventoryPressed = input.Interface.Inventory.triggered;
-		//}
+        //INVENTORY
+        inventoryPressed = input.Interface.Inventory.triggered;
+
+        //FOCUS CAMERA
+        //focusPressed = input.CharacterControls.CameraFocus.triggered;
+        //}
 
         if (debugPressed == true)
         {
@@ -144,19 +161,19 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
             rerollIslandsPressed = input.DebugKeys.RerollIslands.triggered;
 
-			upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
+            upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
             rightIslandPressed = input.DebugKeys.GenerateIslandRight.triggered;
             downIslandPressed = input.DebugKeys.GenerateIslandDown.triggered;
             leftIslandPressed = input.DebugKeys.GenerateIslandLeft.triggered;
 
             damageEnemyPressed = input.DebugKeys.DamageEnemy.triggered;
 
-			castSpellPressed = input.DebugKeys.CastSpell.triggered;
+            castSpellPressed = input.DebugKeys.CastSpell.triggered;
 
             changePlayerHealthPressed = input.DebugKeys.ChangePlayerHealth.triggered;
             changePlayerMaxHealthPressed = input.DebugKeys.ChangePlayerMaxHealth.triggered;
-		}
-	}
+        }
+    }
 
     //void OnMovementPerformed(InputAction.CallbackContext value)
     //{

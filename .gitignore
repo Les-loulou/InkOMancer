@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/\[SCENES\]/TestsLouen.unity
+Assets/\[GRAPHICS\]/VFX/IceProjectile.vfx
+Assets/\[GRAPHICS\]/VFX/FireProjectile.vfx
+Assets/\[GRAPHICS\]/VFX/VFX_WinterBall.vfx
+Assets/\[SCRIPTS\]/SC_LC_PlayerControls.cs
+Assets/\[SCRIPTS\]/SC_LC_PlayerGlobal.cs

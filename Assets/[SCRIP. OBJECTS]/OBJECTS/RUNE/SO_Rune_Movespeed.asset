@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808733c9bb39ad4bacfe65dcec0437a, type: 3}
   m_Name: SO_Rune_Movespeed
   m_EditorClassIdentifier: 
+  runeName: Movespeed
   runeScript: {fileID: 5718836644606686223, guid: b11104a162d859a4582165a1ca5c047a, type: 3}
+  currentLevel: 0
+  inkAmount:
+  - 100
+  costInk:
+  - 5
+  damage:
+  - 100
+  remainingInk: 13
+  actualInkCost: 1
+  actualDamage: 100
