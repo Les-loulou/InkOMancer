@@ -1,31 +1,25 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class SC_LC_PlayerControls : MonoBehaviour
 {
     public static SC_LC_PlayerControls instance;
-    //SC_GamePauseState pauseState;
 
     [HideInInspector] public PlayerInput input;
 
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public Vector2 focusDirection;
-
-
-    //public bool isDamaging = false;
-    //public bool isAttacking = false;
+    [HideInInspector] public Vector2 newIslandDirection;
 
     [Header("   ---= INPUT CHECKERS =---")]
     [Header("DEBUG")]
     public bool debugPressed;
 
     [Space]
-    public bool createIslandPressed;
+    public bool generateRandomIslandPressed;
+    public bool generateIslandPressed;
     public bool rerollIslandsPressed;
-
-    public bool upIslandPressed;
-    public bool rightIslandPressed;
-    public bool downIslandPressed;
-    public bool leftIslandPressed;
 
     public bool damageEnemyPressed;
 
@@ -35,15 +29,12 @@ public class SC_LC_PlayerControls : MonoBehaviour
     public bool changePlayerMaxHealthPressed;
 
     [Header("MOVEMENTS")]
-    public bool movementPressed;
     public bool sprintPressed;
     public bool movementClicked;
 
     [Space]
     [Header("CAMERA")]
     public bool focusPressed;
-    public bool rightRotatePressed;
-    public bool leftRotatePressed;
     public bool changeFocusPressed;
 
     [Space]
@@ -87,62 +78,49 @@ public class SC_LC_PlayerControls : MonoBehaviour
 
         input = new PlayerInput();
 
+        //InputVector2(input.CharacterControls.Movement, direction);
+        //InputVector2(input.CharacterControls.ChangeFocus, focusDirection);
+        //InputVector2(input.DebugKeys.GenerateIsland, newIslandDirection);
+        
         //MOVE
-        input.CharacterControls.Movement.performed += ctx =>
-        {
-            direction = ctx.ReadValue<Vector2>();
-            //movementPressed = true;
-        };
-        input.CharacterControls.Movement.canceled += ctx =>
-        {
-            direction = Vector2.zero;
-            //movementPressed = false;
-        };
-
-        input.CharacterControls.ChangeFocus.performed += ctx =>
-        {
-            focusDirection = ctx.ReadValue<Vector2>();
-        };
-        input.CharacterControls.ChangeFocus.canceled += ctx =>
-        {
-            focusDirection = Vector2.zero;
-        };
+        input.CharacterControls.Movement.performed += ctx => direction = ctx.ReadValue<Vector2>();
+        input.CharacterControls.Movement.canceled += ctx => direction = Vector2.zero;
 
         //SPRINT
         input.CharacterControls.Sprint.performed += ctx => sprintPressed = ctx.ReadValueAsButton();
         input.CharacterControls.Sprint.canceled += ctx => sprintPressed = ctx.ReadValueAsButton();
+        
+        //FOCUS ENEMIES
+        input.CharacterControls.ChangeFocus.performed += ctx => focusDirection = ctx.ReadValue<Vector2>();
+		input.CharacterControls.ChangeFocus.canceled += ctx => focusDirection = Vector2.zero;
 
-        //CAMERA FOCUS
-        input.CharacterControls.CameraFocus.performed += ctx => focusPressed = ctx.ReadValueAsButton();
-        input.CharacterControls.CameraFocus.canceled += ctx => focusPressed = ctx.ReadValueAsButton();
-
-        //DEBUG
+        //DEBUG GENERAL
         input.DebugKeys.Debug.performed += ctx => debugPressed = ctx.ReadValueAsButton();
         input.DebugKeys.Debug.canceled += ctx => debugPressed = ctx.ReadValueAsButton();
+
+        //DEBUG GENERATE ISLANDS
+		input.DebugKeys.GenerateIsland.performed += ctx => newIslandDirection = ctx.ReadValue<Vector2>();
+        input.DebugKeys.GenerateIsland.canceled += ctx => newIslandDirection = Vector2.zero;
     }
 
-    void Start()
-    {
-        //pauseState = SC_GamePauseState.instance;
-    }
+ //   void InputVector2(InputAction _input, Vector2 _direction)
+ //   {
+	//	_input.performed += ctx => _direction = ctx.ReadValue<Vector2>();
+	//	_input.canceled += ctx => _direction = Vector2.zero;
+	//}
 
     void Update()
     {
-
         //PAUSE
         pausePressed = input.Interface.Pause.triggered;
 
-        //if (pauseState.isGamePaused == false)
-        //{
-        //MOUSE MOVEMENTS
-        movementClicked = input.CharacterControls.MovementsMouse.triggered;
+		//MOUSE MOVEMENTS
+		movementClicked = input.CharacterControls.MovementsMouse.triggered;
 
         //INTERACT
         interactPressed = input.CharacterControls.Interact.triggered;
 
         //CAMERA CONTROLS
-        rightRotatePressed = input.CharacterControls.CameraRotateRight.triggered;
-        leftRotatePressed = input.CharacterControls.CameraRotateLeft.triggered;
         changeFocusPressed = input.CharacterControls.ChangeFocus.triggered;
 
         //ATTACK
@@ -151,21 +129,14 @@ public class SC_LC_PlayerControls : MonoBehaviour
         //INVENTORY
         inventoryPressed = input.Interface.Inventory.triggered;
 
-        //FOCUS CAMERA
-        //focusPressed = input.CharacterControls.CameraFocus.triggered;
-        //}
-
         if (debugPressed == true)
         {
-            createIslandPressed = input.DebugKeys.GenerateIsland.triggered;
+            generateRandomIslandPressed = input.DebugKeys.GenerateRandomIsland.triggered;
 
-            rerollIslandsPressed = input.DebugKeys.RerollIslands.triggered;
+			generateIslandPressed = input.DebugKeys.GenerateIsland.triggered;
 
-            upIslandPressed = input.DebugKeys.GenerateIslandUp.triggered;
-            rightIslandPressed = input.DebugKeys.GenerateIslandRight.triggered;
-            downIslandPressed = input.DebugKeys.GenerateIslandDown.triggered;
-            leftIslandPressed = input.DebugKeys.GenerateIslandLeft.triggered;
-
+			rerollIslandsPressed = input.DebugKeys.RerollIslands.triggered;
+            
             damageEnemyPressed = input.DebugKeys.DamageEnemy.triggered;
 
             castSpellPressed = input.DebugKeys.CastSpell.triggered;
@@ -174,14 +145,4 @@ public class SC_LC_PlayerControls : MonoBehaviour
             changePlayerMaxHealthPressed = input.DebugKeys.ChangePlayerMaxHealth.triggered;
         }
     }
-
-    //void OnMovementPerformed(InputAction.CallbackContext value)
-    //{
-    //    direction = value.ReadValue<Vector2>();
-    //}
-
-    //void OnMovementCancelled(InputAction.CallbackContext value)
-    //{
-    //    direction = Vector2.zero;
-    //}
 }

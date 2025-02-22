@@ -74,20 +74,20 @@ public class SC_LC_PlayerHealth : MonoBehaviour
 
 		#region DEBUG
 		if (player.inputs.changePlayerHealthPressed == true)
-			ModifyHealth(debugHealthChange);
+			ChangeHealthValue(debugHealthChange);
 		if (player.inputs.changePlayerMaxHealthPressed == true)
-			ModifyMaxHealth(debugMaxHealthChange);
+			ChangeMaxHealthValue(debugMaxHealthChange);
 		#endregion
 	}
 
-	public void ModifyHealth(float _amount)
+	public void ChangeHealthValue(float _amount)
 	{
 		elapsedTime = 0f; //Resets the elapsed time variable
 		previousHealth = currentHealth; //Sets the previous health value to the currentHealth variable
 		targetHealth += _amount; //Adds the passed amount parameter to the targetHealth variable
 	}
 
-	public void ModifyMaxHealth(float _amount)
+	public void ChangeMaxHealthValue(float _amount)
 	{
 		elapsedTime = 0f; //Resets the elapsed time variable
 		previousMaxHealth = maxHealth;

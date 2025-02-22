@@ -7,13 +7,12 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	SC_LC_PlayerGlobal player;
 
 	[Header(" ---=[ GRID GENERATION ]=---")]
+
+	[Space(2)]
 	[Header("OBJECTS")]
 	[SerializeField] GameObject start;
 	[SerializeField] Transform gridParent;
 	[SerializeField] GameObject chunkPrefab;
-
-	[Space]
-	[SerializeField] bool autoGenerate;
 
 	[Space(2)]
 	[Header("PARAMETERS")]
@@ -30,27 +29,36 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	};
 
 	[SerializeField] Dictionary<Vector3, Chunk> chunks = new();
+
 	[Space(20)]
 	[Header(" ---=[ ISLANDS GENERATION ]=---")]
+
+	[Space(2)]
+	[SerializeField] Generations islandsGenerationMode;
+
+	[Space(2)]
 	[Header("OBJECTS")]
 	[SerializeField] List<GameObject> prefabs = new();
 
 	[Space(2)]
 	[Header("PARAMETERS")]
-	[SerializeField] Vector2 islandsCountRange;
+	[SerializeField] int minIslandsCountRange;
+	[SerializeField] int maxIslandsCountRange;
 	[Space]
-	[SerializeField] Vector2 branchesRange;
+	[SerializeField] int minBranchesRange;
+	[SerializeField] int maxBranchesRange;
 	[Space]
-	[SerializeField] int islandsCount;
-	[SerializeField] int currentIslandsCount;
+	[SerializeField] int currentIslandsStep;
 
 	[Space]
 	[SerializeField] float waitBeforeNextIsland;
+	Coroutine islandGenerationCoroutine;
 
 	[Space]
 	[SerializeField] List<Island> islands = new();
 	[SerializeField] List<Chunk> branchableChunks = new();
-
+	[SerializeField] List<Branch> branches = new();
+	enum Generations { StepByStep, Instant }
 
 	private void Start()
 	{
@@ -58,26 +66,27 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 
 		GenerateGrid();
 
-		if (autoGenerate == true)
-			StartCoroutine(GenerateIslands());
+		switch (islandsGenerationMode)
+		{
+			case Generations.StepByStep:
+				islandGenerationCoroutine = StartCoroutine(StepByStepIslandsGeneration());
+				break;
+			case Generations.Instant:
+				InstantIslandsGeneration();
+				break;
+		}
 	}
 
 	void Update()
 	{
-		if (player.inputs.createIslandPressed == true) //DEBUG
+		if (player.inputs.generateRandomIslandPressed == true) //DEBUG
 			CreateRandomIsland();
 
 		if (player.inputs.rerollIslandsPressed == true)
 			RerollIslands();
 
-		if (player.inputs.upIslandPressed == true)
-			CreateIsland(islandsCount, new Vector3(0, 0, 1));
-		if (player.inputs.rightIslandPressed == true)
-			CreateIsland(islandsCount, new Vector3(1, 0, 0));
-		if (player.inputs.downIslandPressed == true)
-			CreateIsland(islandsCount, new Vector3(0, 0, -1));
-		if (player.inputs.leftIslandPressed == true)
-			CreateIsland(islandsCount, new Vector3(-1, 0, 0));
+		if (player.inputs.generateIslandPressed == true)
+			CreateIsland(islands.Count, new Vector3(player.inputs.newIslandDirection.x, 0f, player.inputs.newIslandDirection.y));
 	}
 
 	#region CHUNKS
@@ -92,7 +101,7 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 		for (int x = 0; x <= xLength; x++) //Creates chunks on the X axis
 			for (int z = 0; z <= zLength; z++) //Creates chunks on the Z axis
 			{
-				Chunk newChunk = new Chunk(chunkPrefab, new Vector3(x, 0, z), new List<Vector3>()); //Creates a new chunk passing the X and Z coordinates as parameters
+				Chunk newChunk = new Chunk(new Vector3(x, 0, z), new List<Vector3>()); //Creates a new chunk passing the X and Z coordinates as parameters
 
 				float xCenter = Mathf.Ceil(xLength / 2); //Finds the center of the X axis
 				float zCenter = Mathf.Ceil(zLength / 2); //Finds the center of the Z axis
@@ -100,8 +109,8 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 					centerChunk = newChunk; //Sets the center of the grid to the centerChunk variable
 
 				chunks.Add(newChunk.coordinates, newChunk); //Adds the new chunk to the chunks dictionary using it's coordinates as a key
-				newChunk.chunkInstance = Instantiate(newChunk.chunkPref, start.transform.position + newChunk.coordinates * chunkOffset, Quaternion.identity, gridParent); //Instantiates the new chunk
-				newChunk.chunkInstance.name = new Vector3(x, 0, z).ToString(); //Sets the name of the chunk as the coordinates of this chunk
+				newChunk.instance = Instantiate(chunkPrefab, start.transform.position + newChunk.coordinates * chunkOffset, Quaternion.identity, gridParent); //Instantiates the new chunk
+				newChunk.instance.name = new Vector3(x, 0, z).ToString(); //Sets the name of the chunk as the coordinates of this chunk
 			}
 
 		UpdateChunks(); //Update the possible directions of all the chunks
@@ -111,19 +120,19 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	{
 		foreach (var chunk in chunks) //For each chunk in the chunks dictionary
 		{
-			chunk.Value.possibleDirections.Clear(); //Clears all possible directions before updating it
+			chunk.Value.possibleDirections.Clear(); //Clears all possible directions before updating them
 
-			for (int i = 0; i < directions.Length; i++) //For each 4 directions
-				if (BoundsCheck(chunk, i)) //Checks if the directions are leading out of bounds
-					if (chunks[chunk.Key + directions[i]].island == null) //If the adjacent chunk is empty
-						chunk.Value.possibleDirections.Add(directions[i]); //Adds the direction of the adjacent chunk to the possible directions
+			foreach (Vector3 direction in directions) //For each 4 directions
+				if (BoundsCheck(chunk, direction) == true) //Checks if the directions are leading inside of bounds
+					if (chunks[chunk.Key + direction].island == null) //If the adjacent chunk is empty
+						chunk.Value.possibleDirections.Add(direction); //Adds the direction of the adjacent chunk to the possible directions
 		}
 	}
 
-	bool BoundsCheck(KeyValuePair<Vector3, Chunk> _chunk, int _currentDirection)
+	bool BoundsCheck(KeyValuePair<Vector3, Chunk> _chunk, Vector3 _currentDirection)
 	{
-		var xDirectionCheck = (_chunk.Key + directions[_currentDirection]).x; //Sets the direction check variable on the X axis
-		var zDirectionCheck = (_chunk.Key + directions[_currentDirection]).z; //Sets the direction check variable on the Z axis
+		var xDirectionCheck = (_chunk.Key + _currentDirection).x; //Sets the direction check variable on the X axis
+		var zDirectionCheck = (_chunk.Key + _currentDirection).z; //Sets the direction check variable on the Z axis
 		if (xDirectionCheck >= 0 && zDirectionCheck >= 0 && xDirectionCheck <= xLength && zDirectionCheck <= zLength) //Checks if the direction doesn't lead out of bounds
 			return true;
 		else
@@ -135,8 +144,7 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	{
 		islands.Clear(); //Clears the islands list
 		branchableChunks.Clear(); //Clears the branchable chunks list
-		islandsCount = 0; //Resets the islands count
-		currentIslandsCount = 0; //Resets the current islands count
+		currentIslandsStep = 0; //Resets the current islands count
 
 		for (int i = 0; i < gridParent.transform.childCount; i++) //For each chunk
 			if (gridParent.transform.GetChild(i).childCount > 0) //If the chunk contains an island
@@ -150,21 +158,34 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 	#endregion
 
 	#region ISLANDS
-	IEnumerator GenerateIslands()
+	IEnumerator StepByStepIslandsGeneration()
 	{
-		for (int i = 0; i < islandsCountRange.y; i++) //While the number of islands is below the max number of islands
-		{
-			CreateRandomIsland(); //Create a new island in a random direction
+        for (int i = 0; i < maxIslandsCountRange; i++)
+        {
+			CreateRandomIsland();
+			yield return new WaitForSeconds(waitBeforeNextIsland);
+        }
 
-			yield return new WaitForSeconds(waitBeforeNextIsland); //Waits before the next step
-		}
-
-		if (islandsCount < islandsCountRange.x) //If the number of island is below the minimum number of islands required
+		if (currentIslandsStep < minIslandsCountRange) //If the number of island is below the minimum number of islands required
 			RerollIslands(); //Restarts the generation process
 		else
 		{
 			SetBranchableChunks(); //Sets the chunks that could start new branches
-			CreateRandomBranches();
+								   //CreateRandomBranches();
+		}
+	}
+
+	void InstantIslandsGeneration()
+	{
+		for (int i = 0; i < maxIslandsCountRange; i++)
+			CreateRandomIsland();
+
+		if (currentIslandsStep < minIslandsCountRange) //If the number of island is below the minimum number of islands required
+			RerollIslands(); //Restarts the generation process
+		else
+		{
+			SetBranchableChunks(); //Sets the chunks that could start new branches
+								   //CreateRandomBranches();
 		}
 	}
 
@@ -179,48 +200,54 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 		else
 		{
 			newIsland.direction = _direction; //Sets the current new island direction to the direction parameter of this function
-			newIsland.coordinates = islands[_i - 1].coordinates + _direction; //Adds the direction parameter to the current new island's coordinates
+			newIsland.coordinates = islands[_i - 1].coordinates + _direction; //Adds the current new island's coordinates using the previous island's coordinates
 		}
 
-		currentIslandsCount++; //Adds 1 to the current islands count
+		currentIslandsStep++; //Adds 1 to the current islands count
 		if (chunks[newIsland.coordinates].island != null)
-			Debug.Log(newIsland.coordinates);
+			Debug.Log(chunks[newIsland.coordinates]);
 
 		if (chunks[newIsland.coordinates].possibleDirections.Count == 0 || chunks[newIsland.coordinates].island != null) //If the new Island is leading in a dead end
 			return; //Stops the generation to go any further
 
 		islands.Add(newIsland); //Adds the new island to the islands list
 		chunks[newIsland.coordinates].island = newIsland; //Stores the new island in the corresponding chunk
-		islandsCount++; //Adds 1 to the islands count
 
-		newIsland.islandInstance = Instantiate( //Instantiates the new island
+		newIsland.instance = Instantiate( //Instantiates the new island
 			newIsland.prefab, //Sets the prefab of the new island
-			chunks[newIsland.coordinates].chunkInstance.transform.position, //Sets the position of the new island
+			chunks[newIsland.coordinates].instance.transform.position, //Sets the position of the new island
 			Quaternion.identity, //Sets the rotation of the new island
-			chunks[newIsland.coordinates].chunkInstance.transform); //Sets the parent of the new island
+			chunks[newIsland.coordinates].instance.transform); //Sets the parent of the new island
 
 		UpdateChunks(); //Update the possible directions of all chunks
 	}
-
 	void CreateRandomIsland()
 	{
-		if (islandsCount == 0) //If the current island is the first one
-			CreateIsland(islandsCount, centerChunk.coordinates); //Creates a new island based on the island count and the center chunk's coordinates
+		if (islands.Count == 0) //If the current island is the first one
+			CreateIsland(islands.Count, centerChunk.coordinates); //Creates a new island based on the island count and the center chunk's coordinates
 		else
 		{
-			Chunk currentChunk = chunks[islands[islandsCount - 1].coordinates]; //Sets the currentChunk variable
+			Chunk currentChunk = chunks[islands[islands.Count - 1].coordinates]; //Sets the currentChunk variable
 			Vector3 randomDirection = currentChunk.possibleDirections[Random.Range(0, currentChunk.possibleDirections.Count)]; //Sets a random direction based on the current chunk's possible directions
-			CreateIsland(islandsCount, randomDirection); //Creates a new island based on the island count and the previously set random direction
+			CreateIsland(islands.Count, randomDirection); //Creates a new island based on the island count and the previously set random direction
 		}
 	}
 
 	void RerollIslands()
 	{
-		StopCoroutine(GenerateIslands());
+		switch (islandsGenerationMode)
+		{
+			case Generations.StepByStep:
+				StopCoroutine(islandGenerationCoroutine);
+				ClearChunks();
+				islandGenerationCoroutine = StartCoroutine(StepByStepIslandsGeneration());
+				break;
+			case Generations.Instant:
+				ClearChunks();
+				InstantIslandsGeneration();
+				break;
+		}
 
-		ClearChunks();
-
-		StartCoroutine(GenerateIslands());
 	}
 	#endregion
 
@@ -230,17 +257,17 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 		foreach (Island island in islands) //For each generated island
 			foreach (Vector3 direction in chunks[island.coordinates].possibleDirections) //For each adjacent chunks to those islands
 				if (chunks[island.coordinates + direction].island == null && chunks[island.coordinates + direction].possibleDirections.Count == 3) //If the chunk is empty and has 3 empty chunks surrounding it
-					branchableChunks.Add(chunks[island.coordinates]); //Adds this chunk to the branchable chunks list
+					branchableChunks.Add(chunks[island.coordinates + direction]); //Adds this chunk to the branchable chunks list
 	}
 
 	void CreateRandomBranches()
 	{
-		int randomRange = (int)Random.Range(branchesRange.x, branchesRange.y);
+		int randomRange = (int)Random.Range(minBranchesRange, maxBranchesRange);
 
 		for (int i = 0; i < randomRange; i++)
 		{
 			int randomChunk = Random.Range(0, branchableChunks.Count);
-			CreateIsland(islandsCount, branchableChunks[randomChunk].possibleDirections[0]);
+			CreateIsland(islands.Count, branchableChunks[randomChunk].possibleDirections[0]);
 		}
 
 		//CreateIsland();
@@ -414,16 +441,15 @@ public class SC_LC_ProceduralGeneration : MonoBehaviour
 [System.Serializable]
 public class Chunk
 {
-	public GameObject chunkPref;
-	public GameObject chunkInstance;
+	[HideInInspector] public GameObject instance;
 	public Vector3 coordinates;
 	public List<Vector3> possibleDirections = new List<Vector3>();
 
+	[Space]
 	public Island island;
 
-	public Chunk(GameObject _prefab, Vector3 _coordinates, List<Vector3> _pDirections)
+	public Chunk(Vector3 _coordinates, List<Vector3> _pDirections)
 	{
-		this.chunkPref = _prefab;
 		this.coordinates = _coordinates;
 		this.possibleDirections = _pDirections;
 	}
@@ -433,7 +459,7 @@ public class Chunk
 public class Island
 {
 	public GameObject prefab;
-	public GameObject islandInstance;
+	public GameObject instance;
 	public Vector3 coordinates;
 	public Vector3 direction;
 
@@ -445,9 +471,10 @@ public class Island
 	}
 }
 
-//public class BranchableChunk
-//{
-//	public Chunk chunk;
-//	public List<Vector3> possibleDirections;
-//}
+[System.Serializable]
+public class Branch
+{
+	public int count = 0;
+	public List<Chunk> chunks;
+}
 #endregion

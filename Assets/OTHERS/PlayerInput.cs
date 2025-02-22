@@ -516,7 +516,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GenerateIsland"",
+                    ""name"": ""GenerateRandomIsland"",
                     ""type"": ""Button"",
                     ""id"": ""76cbd96f-ff6b-4b5e-abff-49427fb96af9"",
                     ""expectedControlType"": """",
@@ -525,40 +525,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GenerateIslandUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""18f4872a-26bf-4950-a427-0b1b42afc08f"",
+                    ""name"": ""GenerateIsland"",
+                    ""type"": ""Value"",
+                    ""id"": ""6a3dbc9e-940c-42aa-bbf4-c1f1ebf62150"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""GenerateIslandRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""00305b15-a918-4f7f-9153-70e97afbb1ec"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""GenerateIslandDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""cf884c95-7a02-478a-8543-082a5382da33"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""GenerateIslandLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""64b5f599-57a1-41be-89c5-a2fdb91a87b9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""DamageEnemy"",
@@ -625,51 +598,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""GenerateIsland"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dc0374b9-b5bd-45f5-a6e0-429227a3c17f"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GenerateIslandUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ea1bf0a2-dc8e-4263-b37b-e94b0ef00cfa"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GenerateIslandRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""83f78b40-5f5e-4ea3-aed0-ddce86182f8c"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GenerateIslandDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""49b4b9ed-08e2-46da-ac57-91f7d14c1f99"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GenerateIslandLeft"",
+                    ""action"": ""GenerateRandomIsland"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -738,6 +667,61 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""ChangePlayerMaxHealth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""40393362-14ed-49fb-af3f-7b3405de5be7"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""638f7a63-9354-4405-9a0b-b40cb8441258"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""3198a5b5-63b5-4d2a-adc4-7931cc8ac897"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c5ded003-2157-4e54-8971-fb2ea125aae6"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""04f8a4eb-ed35-4dff-baa5-d516c4ec3630"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateIsland"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -762,11 +746,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // DebugKeys
         m_DebugKeys = asset.FindActionMap("DebugKeys", throwIfNotFound: true);
         m_DebugKeys_Debug = m_DebugKeys.FindAction("Debug", throwIfNotFound: true);
+        m_DebugKeys_GenerateRandomIsland = m_DebugKeys.FindAction("GenerateRandomIsland", throwIfNotFound: true);
         m_DebugKeys_GenerateIsland = m_DebugKeys.FindAction("GenerateIsland", throwIfNotFound: true);
-        m_DebugKeys_GenerateIslandUp = m_DebugKeys.FindAction("GenerateIslandUp", throwIfNotFound: true);
-        m_DebugKeys_GenerateIslandRight = m_DebugKeys.FindAction("GenerateIslandRight", throwIfNotFound: true);
-        m_DebugKeys_GenerateIslandDown = m_DebugKeys.FindAction("GenerateIslandDown", throwIfNotFound: true);
-        m_DebugKeys_GenerateIslandLeft = m_DebugKeys.FindAction("GenerateIslandLeft", throwIfNotFound: true);
         m_DebugKeys_DamageEnemy = m_DebugKeys.FindAction("DamageEnemy", throwIfNotFound: true);
         m_DebugKeys_CastSpell = m_DebugKeys.FindAction("CastSpell", throwIfNotFound: true);
         m_DebugKeys_RerollIslands = m_DebugKeys.FindAction("RerollIslands", throwIfNotFound: true);
@@ -1005,11 +986,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_DebugKeys;
     private List<IDebugKeysActions> m_DebugKeysActionsCallbackInterfaces = new List<IDebugKeysActions>();
     private readonly InputAction m_DebugKeys_Debug;
+    private readonly InputAction m_DebugKeys_GenerateRandomIsland;
     private readonly InputAction m_DebugKeys_GenerateIsland;
-    private readonly InputAction m_DebugKeys_GenerateIslandUp;
-    private readonly InputAction m_DebugKeys_GenerateIslandRight;
-    private readonly InputAction m_DebugKeys_GenerateIslandDown;
-    private readonly InputAction m_DebugKeys_GenerateIslandLeft;
     private readonly InputAction m_DebugKeys_DamageEnemy;
     private readonly InputAction m_DebugKeys_CastSpell;
     private readonly InputAction m_DebugKeys_RerollIslands;
@@ -1020,11 +998,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         private @PlayerInput m_Wrapper;
         public DebugKeysActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Debug => m_Wrapper.m_DebugKeys_Debug;
+        public InputAction @GenerateRandomIsland => m_Wrapper.m_DebugKeys_GenerateRandomIsland;
         public InputAction @GenerateIsland => m_Wrapper.m_DebugKeys_GenerateIsland;
-        public InputAction @GenerateIslandUp => m_Wrapper.m_DebugKeys_GenerateIslandUp;
-        public InputAction @GenerateIslandRight => m_Wrapper.m_DebugKeys_GenerateIslandRight;
-        public InputAction @GenerateIslandDown => m_Wrapper.m_DebugKeys_GenerateIslandDown;
-        public InputAction @GenerateIslandLeft => m_Wrapper.m_DebugKeys_GenerateIslandLeft;
         public InputAction @DamageEnemy => m_Wrapper.m_DebugKeys_DamageEnemy;
         public InputAction @CastSpell => m_Wrapper.m_DebugKeys_CastSpell;
         public InputAction @RerollIslands => m_Wrapper.m_DebugKeys_RerollIslands;
@@ -1042,21 +1017,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Debug.started += instance.OnDebug;
             @Debug.performed += instance.OnDebug;
             @Debug.canceled += instance.OnDebug;
+            @GenerateRandomIsland.started += instance.OnGenerateRandomIsland;
+            @GenerateRandomIsland.performed += instance.OnGenerateRandomIsland;
+            @GenerateRandomIsland.canceled += instance.OnGenerateRandomIsland;
             @GenerateIsland.started += instance.OnGenerateIsland;
             @GenerateIsland.performed += instance.OnGenerateIsland;
             @GenerateIsland.canceled += instance.OnGenerateIsland;
-            @GenerateIslandUp.started += instance.OnGenerateIslandUp;
-            @GenerateIslandUp.performed += instance.OnGenerateIslandUp;
-            @GenerateIslandUp.canceled += instance.OnGenerateIslandUp;
-            @GenerateIslandRight.started += instance.OnGenerateIslandRight;
-            @GenerateIslandRight.performed += instance.OnGenerateIslandRight;
-            @GenerateIslandRight.canceled += instance.OnGenerateIslandRight;
-            @GenerateIslandDown.started += instance.OnGenerateIslandDown;
-            @GenerateIslandDown.performed += instance.OnGenerateIslandDown;
-            @GenerateIslandDown.canceled += instance.OnGenerateIslandDown;
-            @GenerateIslandLeft.started += instance.OnGenerateIslandLeft;
-            @GenerateIslandLeft.performed += instance.OnGenerateIslandLeft;
-            @GenerateIslandLeft.canceled += instance.OnGenerateIslandLeft;
             @DamageEnemy.started += instance.OnDamageEnemy;
             @DamageEnemy.performed += instance.OnDamageEnemy;
             @DamageEnemy.canceled += instance.OnDamageEnemy;
@@ -1079,21 +1045,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Debug.started -= instance.OnDebug;
             @Debug.performed -= instance.OnDebug;
             @Debug.canceled -= instance.OnDebug;
+            @GenerateRandomIsland.started -= instance.OnGenerateRandomIsland;
+            @GenerateRandomIsland.performed -= instance.OnGenerateRandomIsland;
+            @GenerateRandomIsland.canceled -= instance.OnGenerateRandomIsland;
             @GenerateIsland.started -= instance.OnGenerateIsland;
             @GenerateIsland.performed -= instance.OnGenerateIsland;
             @GenerateIsland.canceled -= instance.OnGenerateIsland;
-            @GenerateIslandUp.started -= instance.OnGenerateIslandUp;
-            @GenerateIslandUp.performed -= instance.OnGenerateIslandUp;
-            @GenerateIslandUp.canceled -= instance.OnGenerateIslandUp;
-            @GenerateIslandRight.started -= instance.OnGenerateIslandRight;
-            @GenerateIslandRight.performed -= instance.OnGenerateIslandRight;
-            @GenerateIslandRight.canceled -= instance.OnGenerateIslandRight;
-            @GenerateIslandDown.started -= instance.OnGenerateIslandDown;
-            @GenerateIslandDown.performed -= instance.OnGenerateIslandDown;
-            @GenerateIslandDown.canceled -= instance.OnGenerateIslandDown;
-            @GenerateIslandLeft.started -= instance.OnGenerateIslandLeft;
-            @GenerateIslandLeft.performed -= instance.OnGenerateIslandLeft;
-            @GenerateIslandLeft.canceled -= instance.OnGenerateIslandLeft;
             @DamageEnemy.started -= instance.OnDamageEnemy;
             @DamageEnemy.performed -= instance.OnDamageEnemy;
             @DamageEnemy.canceled -= instance.OnDamageEnemy;
@@ -1146,11 +1103,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IDebugKeysActions
     {
         void OnDebug(InputAction.CallbackContext context);
+        void OnGenerateRandomIsland(InputAction.CallbackContext context);
         void OnGenerateIsland(InputAction.CallbackContext context);
-        void OnGenerateIslandUp(InputAction.CallbackContext context);
-        void OnGenerateIslandRight(InputAction.CallbackContext context);
-        void OnGenerateIslandDown(InputAction.CallbackContext context);
-        void OnGenerateIslandLeft(InputAction.CallbackContext context);
         void OnDamageEnemy(InputAction.CallbackContext context);
         void OnCastSpell(InputAction.CallbackContext context);
         void OnRerollIslands(InputAction.CallbackContext context);

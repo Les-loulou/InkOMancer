@@ -493,7 +493,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GenerateIsland",
+                    "name": "GenerateRandomIsland",
                     "type": "Button",
                     "id": "76cbd96f-ff6b-4b5e-abff-49427fb96af9",
                     "expectedControlType": "",
@@ -502,40 +502,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GenerateIslandUp",
-                    "type": "Button",
-                    "id": "18f4872a-26bf-4950-a427-0b1b42afc08f",
+                    "name": "GenerateIsland",
+                    "type": "Value",
+                    "id": "6a3dbc9e-940c-42aa-bbf4-c1f1ebf62150",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GenerateIslandRight",
-                    "type": "Button",
-                    "id": "00305b15-a918-4f7f-9153-70e97afbb1ec",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GenerateIslandDown",
-                    "type": "Button",
-                    "id": "cf884c95-7a02-478a-8543-082a5382da33",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GenerateIslandLeft",
-                    "type": "Button",
-                    "id": "64b5f599-57a1-41be-89c5-a2fdb91a87b9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "DamageEnemy",
@@ -602,51 +575,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GenerateIsland",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dc0374b9-b5bd-45f5-a6e0-429227a3c17f",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GenerateIslandUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea1bf0a2-dc8e-4263-b37b-e94b0ef00cfa",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GenerateIslandRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "83f78b40-5f5e-4ea3-aed0-ddce86182f8c",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GenerateIslandDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "49b4b9ed-08e2-46da-ac57-91f7d14c1f99",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GenerateIslandLeft",
+                    "action": "GenerateRandomIsland",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -715,6 +644,61 @@
                     "action": "ChangePlayerMaxHealth",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "40393362-14ed-49fb-af3f-7b3405de5be7",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "638f7a63-9354-4405-9a0b-b40cb8441258",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "3198a5b5-63b5-4d2a-adc4-7931cc8ac897",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "c5ded003-2157-4e54-8971-fb2ea125aae6",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "04f8a4eb-ed35-4dff-baa5-d516c4ec3630",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GenerateIsland",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

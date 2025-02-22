@@ -44,7 +44,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         PlayerMovements();
         PlayerMouseMovements();
 
-		//PlayerSpeed(1);
+		PlayerSpeed(1);
     }
 
     void PlayerMovements()
@@ -53,7 +53,7 @@ public class SC_LC_PlayerMovements : MonoBehaviour
         float xDirection = player.inputs.direction.x; //Stores the X position of the joystick to the "xDirection" variable
         float zDirection = player.inputs.direction.y; //Stores the Z position of the joystick to the "zDirection" variable
 
-		Vector3 forwardCam = cam.transform.forward; //Stores the forward vector of the camera to the "forwardCam" variable
+        Vector3 forwardCam = cam.transform.forward; //Stores the forward vector of the camera to the "forwardCam" variable
 		Vector3 rightCam = cam.transform.right; //Stores the right vector of the camera to the "rightCam" variable
 
 		forwardCam.y = 0; //Sets the Y axis of the "forwardCam" variable to 0
