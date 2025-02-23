@@ -4790,6 +4790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129392505}
+  - component: {fileID: 1129392506}
   - component: {fileID: 1129392504}
   m_Layer: 0
   m_Name: GridManager
@@ -4810,61 +4811,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36247175ce7b6b24daf5fce3b0b6a1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 1898639136}
-  gridParent: {fileID: 415351069}
-  chunkPrefab: {fileID: 2914895896220912548, guid: e01a66fd83ace8b4eb135f1544fc2b57, type: 3}
-  xLength: 20
-  zLength: 20
-  chunkOffset: 5
-  generationMode: 0
+  islandsGenerationMode: 0
+  waitBeforeNextIsland: 0.02
   prefabs:
   - {fileID: 4823443795552072870, guid: 921eeb78374ddb044984acb68564c797, type: 3}
   minIslandsCountRange: 25
-  maxIslandsCountRange: 100
+  maxIslandsCountRange: 30
   minBranchesRange: 25
   maxBranchesRange: 100
   currentIslandsStep: 0
-  islandsCount: 0
-  waitBeforeNextIsland: 0.02
   islands: []
   branchableChunks: []
-  branches:
-  - count: 0
-    chunks:
-    - instance: {fileID: 0}
-      coordinates: {x: 0, y: 0, z: 0}
-      possibleDirections: []
-      island:
-        prefab: {fileID: 0}
-        instance: {fileID: 0}
-        coordinates: {x: 0, y: 0, z: 0}
-        direction: {x: 0, y: 0, z: 0}
-  - count: 0
-    chunks:
-    - instance: {fileID: 0}
-      coordinates: {x: 0, y: 0, z: 0}
-      possibleDirections: []
-      island:
-        prefab: {fileID: 0}
-        instance: {fileID: 0}
-        coordinates: {x: 0, y: 0, z: 0}
-        direction: {x: 0, y: 0, z: 0}
-    - instance: {fileID: 0}
-      coordinates: {x: 0, y: 0, z: 0}
-      possibleDirections: []
-      island:
-        prefab: {fileID: 0}
-        instance: {fileID: 0}
-        coordinates: {x: 0, y: 0, z: 0}
-        direction: {x: 0, y: 0, z: 0}
-    - instance: {fileID: 0}
-      coordinates: {x: 0, y: 0, z: 0}
-      possibleDirections: []
-      island:
-        prefab: {fileID: 0}
-        instance: {fileID: 0}
-        coordinates: {x: 0, y: 0, z: 0}
-        direction: {x: 0, y: 0, z: 0}
+  branches: []
+  test:
+    prefab: {fileID: 0}
+    instance: {fileID: 0}
+    coordinates: {x: 0, y: 0, z: 0}
+    direction: {x: 0, y: 0, z: 0}
 --- !u!4 &1129392505
 Transform:
   m_ObjectHideFlags: 0
@@ -4883,6 +4846,35 @@ Transform:
   - {fileID: 415351069}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129392506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129392503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6998a77dbc4db44984cd284dcc49d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandsScript: {fileID: 0}
+  start: {fileID: 1898639136}
+  gridParent: {fileID: 415351069}
+  chunkPrefab: {fileID: 2914895896220912548, guid: e01a66fd83ace8b4eb135f1544fc2b57, type: 3}
+  xLength: 20
+  zLength: 20
+  chunkOffset: 5
+  centerChunk:
+    instance: {fileID: 0}
+    coordinates: {x: 0, y: 0, z: 0}
+    possibleDirections: []
+    island:
+      prefab: {fileID: 0}
+      instance: {fileID: 0}
+      coordinates: {x: 0, y: 0, z: 0}
+      direction: {x: 0, y: 0, z: 0}
+  showChunksDictionary: []
 --- !u!1001 &1160685407
 PrefabInstance:
   m_ObjectHideFlags: 0
