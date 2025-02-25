@@ -6,42 +6,37 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 {
 	SC_LC_PlayerGlobal player;
 
-	SC_LC_ProceduralGenerationGrid gridScript;
+	public SC_LC_ProceduralGenerationGrid gridScript;
 
 	[Space(10)]
-	[SerializeField] Generations islandsGenerationMode;
+	public Generations islandsGenerationMode;
 	[Space(2)]
-	[SerializeField] float waitBeforeNextIsland;
+	public float waitBeforeNextIsland;
+	public int currentIslandsStep;
 	Coroutine islandGenerationCoroutine;
 
 	[Space(2)]
 	[Header("OBJECTS")]
-	[SerializeField] List<GameObject> prefabs = new();
+	public List<GameObject> prefabs = new();
 
 	[Space(2)]
 	[Header("PARAMETERS")]
-	[SerializeField] int minIslandsCountRange;
-	[SerializeField] int maxIslandsCountRange;
+	public int minIslandsCount;
+	public int maxIslandsCount;
 	[Space]
-	[SerializeField] int minBranchesRange;
-	[SerializeField] int maxBranchesRange;
-	[Space]
-	public int currentIslandsStep;
+	public int minBranchesCount;
+	public int maxBranchesCount;
 
 	[Space]
-	public List<Island> islands = new();
-	public List<Chunk> branchableChunks = new();
-	public List<Branch> branches = new();
+	public List<Island> islands = new List<Island>();
+	public List<Chunk> branchableChunks = new List<Chunk>();
+	public List<Branch> branches = new List<Branch>();
 
-	public Island test;
-
-	enum Generations { StepByStep, Instant }
+	public enum Generations { StepByStep, Instant }
 
 	void Start()
 	{
 		player = SC_LC_PlayerGlobal.instance;
-
-		gridScript = GetComponent<SC_LC_ProceduralGenerationGrid>();
 
 		switch (islandsGenerationMode)
 		{
@@ -69,18 +64,18 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 	#region ISLANDS
 	IEnumerator StepByStepIslandsGeneration()
 	{
-        for (int i = 0; i < maxIslandsCountRange; i++)
-        {
+		for (int i = 0; i < maxIslandsCount; i++)
+		{
 			CreateRandomIsland();
 			yield return new WaitForSeconds(waitBeforeNextIsland);
-        }
+		}
 
 		AfterMainBranch();
 	}
 
 	void InstantIslandsGeneration()
 	{
-		for (int i = 0; i < maxIslandsCountRange; i++)
+		for (int i = 0; i < maxIslandsCount; i++)
 			CreateRandomIsland();
 
 		AfterMainBranch();
@@ -88,7 +83,7 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 
 	void AfterMainBranch()
 	{
-		if (currentIslandsStep < minIslandsCountRange) //If the number of island is below the minimum number of islands required
+		if (islands.Count < minIslandsCount) //If the number of island is below the minimum number of islands required
 			RerollIslands(); //Restarts the generation process
 		else
 		{
@@ -112,17 +107,19 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 		}
 
 		currentIslandsStep++; //Adds 1 to the current islands count
-		//if (gridScript.chunks[newIsland.coordinates].island != null)
-		//{
-		//	Debug.Log("An island already exists at : " + newIsland.coordinates);
-		//	test = gridScript.chunks[newIsland.coordinates].island;
-		//}
 
-		if (gridScript.chunks[newIsland.coordinates].possibleDirections.Count == 0 || gridScript.chunks[newIsland.coordinates].island != null) //If the new Island is leading in a dead end
+		if (gridScript.chunks[newIsland.coordinates].possibleDirections.Count == 0) //If the new Island is leading in a dead end
 		{
-			test = gridScript.chunks[newIsland.coordinates].island;
-			return; //Stops the generation to go any further
+			//Debug.Log("Reached a dead-end at : " + newIsland.coordinates);
+			return;
 		}
+
+		if (gridScript.chunks[newIsland.coordinates].island != null)
+		{
+			//Debug.Log("An island already exists at : " + newIsland.coordinates);
+			return;
+		}
+
 
 		islands.Add(newIsland); //Adds the new island to the islands list
 		gridScript.chunks[newIsland.coordinates].island = newIsland; //Stores the new island in the corresponding chunk
@@ -176,7 +173,7 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 
 	void CreateRandomBranches()
 	{
-		int randomRange = (int)Random.Range(minBranchesRange, maxBranchesRange);
+		int randomRange = (int)Random.Range(minBranchesCount, maxBranchesCount);
 
 		for (int i = 0; i < randomRange; i++)
 		{
@@ -266,18 +263,18 @@ public class SC_LC_ProceduralGenerationIslands : MonoBehaviour
 		//rooms[roomCount] = newRoom;
 		//roomCount++;
 	}
-	IEnumerator TestGenerateIslands()
-	{
-		//	for (int i = 0; i < maxIslands; i++) //Generate a set number of islands
-		//	{
-		//		CreateIsland(); //Creates each island
+	//IEnumerator TestGenerateIslands()
+	//{
+	//	//	for (int i = 0; i < maxIslands; i++) //Generate a set number of islands
+	//	//	{
+	//	//		CreateIsland(); //Creates each island
 
-		yield return new WaitForSeconds(waitBeforeNextIsland); //Waits before the next step
-															   //	}
+	//	//yield return new WaitForSeconds(waitBeforeNextIsland); //Waits before the next step
+	//	//													   //	}
 
-		//	if (islandsCount < minIslands) //If the number of island is below the minimum number of islands required
-		//		RerollIslands(); //Restarts the generation process
-	}
+	//	//	if (islandsCount < minIslands) //If the number of island is below the minimum number of islands required
+	//	//		RerollIslands(); //Restarts the generation process
+	//}
 	void TestCreateIsland()
 	{
 		//	GameObject newPrefab = prefabs[Random.Range(0, prefabs.Count)]; //Chooses a random island in the islands list

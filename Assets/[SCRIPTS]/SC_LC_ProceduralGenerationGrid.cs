@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class SC_LC_ProceduralGenerationGrid : MonoBehaviour
 {
-	[HideInInspector] public SC_LC_ProceduralGenerationIslands islandsScript;
+	public SC_LC_ProceduralGenerationIslands islandsScript;
 
 	[Space(2)]
 	[Header("OBJECTS")]
-	[SerializeField] GameObject start;
-	[SerializeField] Transform gridParent;
-	[SerializeField] GameObject chunkPrefab;
+	public GameObject start;
+	public Transform gridParent;
+	public GameObject chunkPrefab;
 
 	[Space(2)]
 	[Header("PARAMETERS")]
-	[SerializeField] float xLength;
-	[SerializeField] float zLength;
-	[SerializeField] float chunkOffset;
+	public float xLength;
+	public float zLength;
+	public float chunkOffset;
 	[HideInInspector] public Chunk centerChunk;
 	Vector3[] directions = new Vector3[4]
 	{
@@ -25,20 +25,15 @@ public class SC_LC_ProceduralGenerationGrid : MonoBehaviour
 		new Vector3(-1, 0, 0),
 	};
 
-	public Dictionary<Vector3, Chunk> chunks = new();
-	[SerializeField] List<Chunk> showChunksDictionary = new();
-
-	void Awake()
-	{
-		islandsScript = GetComponent<SC_LC_ProceduralGenerationIslands>();
-
-		GenerateGrid();
-	}
+	//List<Chunk> serializedChunks = new();
+	[HideInInspector] public Dictionary<Vector3, Chunk> chunks = new();
 
 	private void Start()
 	{
-		foreach (var chunk in chunks)
-			showChunksDictionary.Add(chunk.Value);
+		GenerateGrid();
+
+		//foreach (var chunk in chunks)
+		//	serializedChunks.Add(chunk.Value);
 	}
 
 	void GenerateGrid()
@@ -54,8 +49,8 @@ public class SC_LC_ProceduralGenerationGrid : MonoBehaviour
 			{
 				Chunk newChunk = new Chunk(new Vector3(x, 0, z), new List<Vector3>()); //Creates a new chunk passing the X and Z coordinates as parameters
 
-				float xCenter = Mathf.Ceil(xLength / 2); //Finds the center of the X axis
-				float zCenter = Mathf.Ceil(zLength / 2); //Finds the center of the Z axis
+				int xCenter = Mathf.RoundToInt(xLength / 2); //Finds the center of the X axis
+				int zCenter = Mathf.RoundToInt(xLength / 2); //Finds the center of the Z axis
 				if (newChunk.coordinates == new Vector3(xCenter, 0, zCenter)) //Checks if the current chunk's coordinates are the center of the grid
 					centerChunk = newChunk; //Sets the center of the grid to the centerChunk variable
 
@@ -74,9 +69,10 @@ public class SC_LC_ProceduralGenerationGrid : MonoBehaviour
 			chunk.Value.possibleDirections.Clear(); //Clears all possible directions before updating them
 
 			foreach (Vector3 direction in directions) //For each 4 directions
-				if (BoundsCheck(chunk, direction) == true) //Checks if the directions are leading inside of bounds
-					if (chunks[chunk.Key + direction].island == null) //If the adjacent chunk is empty
-						chunk.Value.possibleDirections.Add(direction); //Adds the direction of the adjacent chunk to the possible directions
+				if (BoundsCheck(chunk, direction) == true) //Checks if the directions are leading inside of
+					if (chunks.ContainsKey(chunk.Key + direction) && chunks[chunk.Key + direction] != null)
+						if (chunks[chunk.Key + direction].island == null) //If the adjacent chunk is empty
+							chunk.Value.possibleDirections.Add(direction); //Adds the direction of the adjacent chunk to the possible directions
 		}
 	}
 
@@ -84,7 +80,7 @@ public class SC_LC_ProceduralGenerationGrid : MonoBehaviour
 	{
 		var xDirectionCheck = (_chunk.Key + _currentDirection).x; //Sets the direction check variable on the X axis
 		var zDirectionCheck = (_chunk.Key + _currentDirection).z; //Sets the direction check variable on the Z axis
-		if (xDirectionCheck >= 0 && zDirectionCheck >= 0 && xDirectionCheck <= xLength && zDirectionCheck <= zLength) //Checks if the direction doesn't lead out of bounds
+		if (xDirectionCheck >= 0 && zDirectionCheck >= 0 && xDirectionCheck <= xLength && zDirectionCheck <=zLength) //Checks if the direction doesn't lead out of bounds
 			return true;
 		else
 			return false;
